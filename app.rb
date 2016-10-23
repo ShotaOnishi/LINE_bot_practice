@@ -45,7 +45,7 @@ post '/callback' do
           text: event.message['text'] + "fuck you"
         }
         res = client.reply_message(event['replyToken'], message)
-        p res
+        # p res
         p res.body
       end
     end
