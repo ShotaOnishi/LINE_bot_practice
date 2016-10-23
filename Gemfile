@@ -7,3 +7,7 @@ gem 'sinatra'
 gem 'rest-client'
 gem 'docomoru'
 gem 'line-bot-api'
+gem "sinatra-contrib"
+gem 'sinatra-reloader'
+gem 'thin'
+gem "httpclient"

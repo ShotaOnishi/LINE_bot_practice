@@ -1,5 +1,8 @@
 require 'sinatra'   # gem 'sinatra'
 require 'line/bot'  # gem 'line-bot-api'
+require 'rest-client'
+require "json"
+require "sinatra/reloader" if development?
 
 def client
   @client ||= Line::Bot::Client.new { |config|
