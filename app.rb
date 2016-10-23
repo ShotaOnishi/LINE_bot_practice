@@ -1,8 +1,10 @@
+require 'bundler/setup'
 require 'sinatra'   # gem 'sinatra'
 require 'line/bot'  # gem 'line-bot-api'
 require 'rest-client'
 require "json"
 require "sinatra/reloader" if development?
+require 'httpclient'
 
 def client
   @client ||= Line::Bot::Client.new { |config|
@@ -20,7 +22,6 @@ post '/callback' do
   end
 
   events = client.parse_events_from(body)
-  p events
   events.each { |event|
     case event
     when Line::Bot::Event::Message
