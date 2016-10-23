@@ -6,3 +6,4 @@ source "https://rubygems.org"
 gem 'sinatra'
 gem 'rest-client'
 gem 'docomoru'
+gem 'line-bot-api'
