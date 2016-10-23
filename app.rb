@@ -1,10 +1,21 @@
-require 'bundler/setup'
 require 'sinatra'   # gem 'sinatra'
 require 'line/bot'  # gem 'line-bot-api'
-require 'rest-client'
-require "json"
-require "sinatra/reloader" if development?
-require 'httpclient'
+
+module Line
+  module Bot
+    class HTTPClient
+      def http(uri)
+        proxy = URI(ENV["FIXIE_URL"])
+        http = Net::HTTP.new(uri.host, uri.port, proxy.host, proxy.port, proxy.user, proxy.password)
+        if uri.scheme == "https"
+          http.use_ssl = true
+        end
+
+        http
+      end
+    end
+  end
+end
 
 def client
   @client ||= Line::Bot::Client.new { |config|
@@ -22,6 +33,8 @@ post '/callback' do
   end
 
   events = client.parse_events_from(body)
+  p events
+
   events.each { |event|
     case event
     when Line::Bot::Event::Message
@@ -31,7 +44,9 @@ post '/callback' do
           type: 'text',
           text: event.message['text']
         }
-        client.reply_message(event['replyToken'], message)
+        res = client.reply_message(event['replyToken'], message)
+        p res
+        p res.body
       end
     end
   }
