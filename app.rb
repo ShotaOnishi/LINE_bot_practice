@@ -42,7 +42,7 @@ post '/callback' do
       when Line::Bot::Event::MessageType::Text
         message = {
           type: 'text',
-          text: event.message['text'] + "aaa"
+          text: event.message['text'] + "fuck you"
         }
         res = client.reply_message(event['replyToken'], message)
         p res
