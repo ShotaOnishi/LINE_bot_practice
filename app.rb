@@ -40,7 +40,7 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-        if event == "a"
+        if event.message['text'] == "a"
           message = {
             type: 'text',
             text: event.message['text'] + "fuck you"
