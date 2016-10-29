@@ -46,8 +46,8 @@ post '/callback' do
         if event.message['text'] == "image"
           message = {
             type: "image",
-            originalContentUrl: "https://www.google.co.jp/search?q=%E8%97%A4%E7%94%B0%E3%83%8B%E3%82%B3%E3%83%AB&rlz=1C5CHFA_enJP700JP700&espv=2&biw=1275&bih=612&site=webhp&source=lnms&tbm=isch&sa=X&sqi=2&ved=0ahUKEwjR_uaY3f7PAhXLv7wKHRf8AeYQ_AUIBigB#imgrc=SjlF3zJv1J7oFM%3A.jpg",
-            previewImageUrl: "https://www.google.co.jp/search?q=%E8%97%A4%E7%94%B0%E3%83%8B%E3%82%B3%E3%83%AB&rlz=1C5CHFA_enJP700JP700&espv=2&biw=1275&bih=612&site=webhp&source=lnms&tbm=isch&sa=X&sqi=2&ved=0ahUKEwjR_uaY3f7PAhXLv7wKHRf8AeYQ_AUIBigB#imgrc=SjlF3zJv1J7oFM%3A.jpg"
+            originalContentUrl: "https://example.com/original.jpg",
+            previewImageUrl: "https://example.com/preview.jpg"
           }
         else
           message = {
