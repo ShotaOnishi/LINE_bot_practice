@@ -45,7 +45,7 @@ post '/callback' do
         type = 'text'
         response_message = choice_serif
       elsif event.message['text'].include?("住所")
-        type = 'text'
+        type = 'location'
         response_message = event.message['text'].delete("住所")
       else
         type = 'text'
