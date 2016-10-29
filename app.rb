@@ -72,7 +72,7 @@ post '/callback' do
           when 'text'
             message = {
               type: type,
-              text: response_message
+              text: response_message + "aaa"
             }
           when 'image'
             message = {
