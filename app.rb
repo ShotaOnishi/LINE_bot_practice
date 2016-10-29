@@ -38,10 +38,10 @@ post '/callback' do
     events = client.parse_events_from(body)
 
     events.each { |event|
-      if event.include?("画像")
+      if event.message['text'].include?("画像")
         type = 'image'
         response_message = choice_image
-      elsif event.include("名言")
+      elsif event.message['text'].include?("名言")
         type = 'text'
         response_message = choice_serif
       else
