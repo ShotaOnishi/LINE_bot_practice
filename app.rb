@@ -91,7 +91,7 @@ post '/callback' do
           when 'imagemap'
             message = {
               "type": "imagemap",
-              "baseUrl": "https://pbs.twimg.com/media/B_QHDbSVEAA1adJ.jpg",
+              "baseUrl": "https://pbs.twimg.com/media/B_QHDbSVEAA1adJ",
               "altText": "this is an imagemap",
               "baseSize": {
                 "height": 1040,
@@ -100,7 +100,7 @@ post '/callback' do
                 "actions": [
                   {
                     "type": "uri",
-                    "linkUri": "https://example.com/",
+                    "linkUri": "http://qiita.com/zakuroishikuro/items/066421bce820e3c73ce9",
                     "area": {
                       "x": 0,
                       "y": 0,
