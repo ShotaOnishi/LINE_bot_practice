@@ -91,7 +91,7 @@ post '/callback' do
           when 'imagemap'
             message = {
               "type": "imagemap",
-              "baseUrl": "https://pbs.twimg.com/media/B_QHDbSVEAA1adJ",
+              "baseUrl": "http://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5",
               "altText": "this is an imagemap",
               "baseSize": {
                 "height": 1040,
