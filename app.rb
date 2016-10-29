@@ -45,9 +45,9 @@ post '/callback' do
       when Line::Bot::Event::MessageType::Text
         if event.message['text'] == "image"
           message = {
-            type: "image",
-            originalContentUrl: "https://example.com/#{event.message['text']}.jpg",
-            previewImageUrl: "https://example.com/#{event.message['text']}.jpg"
+            "type": "image",
+            "originalContentUrl": "https://example.com/#{event.message['text']}.jpg",
+            "previewImageUrl": "https://example.com/#{event.message['text']}.jpg"
           }
         else
           message = {
