@@ -78,7 +78,7 @@ post '/callback' do
             }
           when 'meeting'
             message = {
-              type: 'text'
+              type: 'text',
               text: ""
             }
           when 'image'
