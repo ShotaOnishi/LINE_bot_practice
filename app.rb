@@ -46,8 +46,8 @@ post '/callback' do
         if event.message['text'] == "image"
           message = {
             "type": "image",
-            "originalContentUrl": "https://example.com/#{event.message['text']}.jpg",
-            "previewImageUrl": "https://example.com/#{event.message['text']}.jpg"
+            "originalContentUrl": "https://i.ytimg.com/vi/6nQyHeiDHu0/hqdefault.jpg",
+            "previewImageUrl": "hhttps://i.ytimg.com/vi/6nQyHeiDHu0/hqdefault.jpg"
           }
         else
           message = {
