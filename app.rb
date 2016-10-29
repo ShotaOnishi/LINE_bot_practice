@@ -47,7 +47,7 @@ post '/callback' do
           message = {
             "type": "image",
             "originalContentUrl": "https://i.ytimg.com/vi/6nQyHeiDHu0/hqdefault.jpg",
-            "previewImageUrl": "hhttps://i.ytimg.com/vi/6nQyHeiDHu0/hqdefault.jpg"
+            "previewImageUrl": "https://i.ytimg.com/vi/6nQyHeiDHu0/hqdefault.jpg"
           }
         else
           message = {
