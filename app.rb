@@ -91,7 +91,7 @@ post '/callback' do
           when 'imagemap'
             message = {
               "type": "imagemap",
-              "baseUrl": "http://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5",
+              "baseUrl": "https://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5",
               "altText": "this is an imagemap",
               "baseSize": {
                 "height": 1040,
@@ -100,7 +100,7 @@ post '/callback' do
                 "actions": [
                   {
                     "type": "uri",
-                    "linkUri": "http://qiita.com/zakuroishikuro/items/066421bce820e3c73ce9",
+                    "linkUri": "https://qiita.com/zakuroishikuro/items/066421bce820e3c73ce9",
                     "area": {
                       "x": 0,
                       "y": 0,
