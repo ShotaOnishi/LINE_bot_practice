@@ -91,7 +91,7 @@ post '/callback' do
           when 'imagemap'
             message = {
               "type": "imagemap",
-              "baseUrl": "https://example.com/bot/images/rm001",
+              "baseUrl": "https://pbs.twimg.com/media/B_QHDbSVEAA1adJ.jpg",
               "altText": "this is an imagemap",
               "baseSize": {
                 "height": 1040,
