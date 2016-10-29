@@ -30,9 +30,9 @@ post '/callback' do
   signature = request.env['HTTP_X_LINE_SIGNATURE']
   unless client.validate_signature(body, signature)
     error 400 do 'Bad Request' end
-  end
+    end
 
-  events = client.parse_events_from(body)
+    events = client.parse_events_from(body)
   # p events
 
   events.each { |event|
@@ -40,13 +40,20 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-        message = {
-          type: 'text',
-          text: event.message['text'] + "fuck you"
-        }
+        if event == "a"
+          message = {
+            type: 'text',
+            text: event.message['text'] + "fuck you"
+          }
+        else
+          message = {
+            type: 'text',
+            text: event.message['text']
+          }
+        end
         res = client.reply_message(event['replyToken'], message)
         # p res
-        p res.body
+        #p res.body
       end
     end
   }
