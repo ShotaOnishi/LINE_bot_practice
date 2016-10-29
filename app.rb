@@ -65,9 +65,9 @@ post '/callback' do
               originalContentUrl: response_message,
               previewImageUrl: response_message
             }
-            res = client.reply_message(event['replyToken'], message)
-            p res
           end
+          res = client.reply_message(event['replyToken'], message)
+          p res
         when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
           response = client.get_message_content(event.message['id'])
           tf = Tempfile.open("content")
