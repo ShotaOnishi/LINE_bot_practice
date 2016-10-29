@@ -56,7 +56,7 @@ post '/callback' do
       elsif event.message['text'].include?("ボタン")
         type = "button"
       elsif event.message['text'].include?("リッチ")
-        type = "richtemp"
+        type = "rich"
       elsif event.message['text'].include?("確認")
         type = "confirm"
       else
