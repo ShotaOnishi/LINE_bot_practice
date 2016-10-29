@@ -47,6 +47,10 @@ post '/callback' do
       elsif event.message['text'].include?("住所")
         type = 'location'
         response_message = event.message['text'].delete("住所")
+      elsif event.message['text'].include?("スタンプ")
+        type = 'sticker'
+        packageId = "1"
+        stickerId = "1"
       else
         type = 'text'
         response_message = event.message['text']
@@ -75,6 +79,12 @@ post '/callback' do
               "address": "〒150-0002 東京都渋谷区渋谷２丁目２１−１",
               "latitude": 35.65910807942215,
               "longitude": 139.70372892916203
+            }
+          when 'sticker'
+            message = {
+              type: type,
+              packageId: packageId,
+              stickerId: stickerId
             }
           end
           res = client.reply_message(event['replyToken'], message)
