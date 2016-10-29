@@ -53,6 +53,8 @@ post '/callback' do
         stickerId = "1"
       elsif event.message['text'].include?("イメージリンク")
         type = "imagemap"
+      elsif event.message['text'].include?("テンプレ")
+        type = "template"
       else
         type = 'text'
         response_message = event.message['text']
@@ -120,56 +122,109 @@ post '/callback' do
                     }
                   ]
                 }
+              when 'template'
+                message = {
+                 "type": "template",
+                 "altText": "this is a carousel template",
+                 "template": {
+                  "type": "carousel",
+                  "columns": [
+                    {
+                      "thumbnailImageUrl": "https://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.jpg",
+                      "title": "this is menu",
+                      "text": "description",
+                      "actions": [
+                        {
+                          "type": "postback",
+                          "label": "Buy",
+                          "data": "action=buy&itemid=111"
+                          },
+                          {
+                            "type": "postback",
+                            "label": "Add to cart",
+                            "data": "action=add&itemid=111"
+                            },
+                            {
+                              "type": "uri",
+                              "label": "View detail",
+                              "uri": "http://example.com/page/111"
+                            }
+                          ]
+                          },
+                          {
+                            "thumbnailImageUrl": "https://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.jpg",
+                            "title": "this is menu",
+                            "text": "description",
+                            "actions": [
+                              {
+                                "type": "postback",
+                                "label": "Buy",
+                                "data": "action=buy&itemid=222"
+                                },
+                                {
+                                  "type": "postback",
+                                  "label": "Add to cart",
+                                  "data": "action=add&itemid=222"
+                                  },
+                                  {
+                                    "type": "uri",
+                                    "label": "View detail",
+                                    "uri": "http://example.com/page/222"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      end
+                      res = client.reply_message(event['replyToken'], message)
+                      p res
+                    when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
+                      response = client.get_message_content(event.message['id'])
+                      tf = Tempfile.open("content")
+                      tf.write(response.body)
+                    end
+                  end
+                }
+                "OK"
               end
-              res = client.reply_message(event['replyToken'], message)
-              p res
-            when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
-              response = client.get_message_content(event.message['id'])
-              tf = Tempfile.open("content")
-              tf.write(response.body)
-            end
-          end
-        }
-
-        "OK"
-      end
 
 
 
-      def choice_image
-        images = [
-          'https://pbs.twimg.com/media/B_QHDbSVEAA1adJ.jpg',
-          'https://pbs.twimg.com/media/BuHSdwCCAAELvUK.jpg',
-          'https://i.ytimg.com/vi/6nQyHeiDHu0/hqdefault.jpg',
-          'https://s-media-cache-ak0.pinimg.com/564x/f2/a2/4f/f2a24f58f13823def4053e1ae32f2557.jpg',
-          'https://pbs.twimg.com/media/CZQMsB-UYAQ-GJA.jpg',
-          'https://ssl-stat.amebame.com/pub/content/8265872137/user/article/194267610976870743/ea20fa0d12335b8b2735d1a768d0932a/cached.jpg',
-          'https://s-media-cache-ak0.pinimg.com/236x/f6/5c/8d/f65c8dfee01d6407e9e9cd8298cbeb5d.jpg',
-          'https://pbs.twimg.com/media/CMTT-vPUAAErxqJ.png',
-          'https://pbs.twimg.com/media/Bc7INKDCQAAp1d8.jpg',
-          'https://pbs.twimg.com/media/B5RSK0pCYAA45il.png'
-        ]
-        images.sample
-      end
+              def choice_image
+                images = [
+                  'https://pbs.twimg.com/media/B_QHDbSVEAA1adJ.jpg',
+                  'https://pbs.twimg.com/media/BuHSdwCCAAELvUK.jpg',
+                  'https://i.ytimg.com/vi/6nQyHeiDHu0/hqdefault.jpg',
+                  'https://s-media-cache-ak0.pinimg.com/564x/f2/a2/4f/f2a24f58f13823def4053e1ae32f2557.jpg',
+                  'https://pbs.twimg.com/media/CZQMsB-UYAQ-GJA.jpg',
+                  'https://ssl-stat.amebame.com/pub/content/8265872137/user/article/194267610976870743/ea20fa0d12335b8b2735d1a768d0932a/cached.jpg',
+                  'https://s-media-cache-ak0.pinimg.com/236x/f6/5c/8d/f65c8dfee01d6407e9e9cd8298cbeb5d.jpg',
+                  'https://pbs.twimg.com/media/CMTT-vPUAAErxqJ.png',
+                  'https://pbs.twimg.com/media/Bc7INKDCQAAp1d8.jpg',
+                  'https://pbs.twimg.com/media/B5RSK0pCYAA45il.png'
+                ]
+                images.sample
+              end
 
-      def choice_serif
-        serifs = [
-          'ゆっくりでもいい。自分の力でやり遂げろ！',
-          'オレは絶対にあきらめん',
-          'キミは牧をも超える器だ！！オレはそう信じている！！',
-          'キミは切れる!!相当切れる!!',
-          '１年にしてすでにこれほどゲームに影響力を及ぼすプレイヤーはそうはいないだろう…キミはとてつもないスターになる…　そんな予感がする…',
-          'よし！！行こうか！　練習だ！！',
-          'オレの監督歴の中で今年のチームが１番練習した １番キツかったはずだ　よくがんばった そろそろMGMが王者になっていいころだ',
-          '敗因はこの私！！MGMの選手たちは最高のプレイをした！！',
-          'あいつも３年間がんばってきた男なんだ 侮ってはいけなかった...',
-          'キミの肉体が…　いや…　細胞が瞬間的に反応した',
-          'そう…　今でいえば　オレが仙道　キミが流川みたいなもんだ',
-          'それはお前だ　「ビッグ・ジュン」',
-          'なぜキミがそこにいるんだぁ!?',
-          '小暮はある程度はなしといていい!!',
-          'キミをでかくすることはできない。たとえオレがどんな名コーチでもな',
-          'もーーー我慢できんっ!!!',
-        ]
-        serifs.sample
-      end
+              def choice_serif
+                serifs = [
+                  'ゆっくりでもいい。自分の力でやり遂げろ！',
+                  'オレは絶対にあきらめん',
+                  'キミは牧をも超える器だ！！オレはそう信じている！！',
+                  'キミは切れる!!相当切れる!!',
+                  '１年にしてすでにこれほどゲームに影響力を及ぼすプレイヤーはそうはいないだろう…キミはとてつもないスターになる…　そんな予感がする…',
+                  'よし！！行こうか！　練習だ！！',
+                  'オレの監督歴の中で今年のチームが１番練習した １番キツかったはずだ　よくがんばった そろそろMGMが王者になっていいころだ',
+                  '敗因はこの私！！MGMの選手たちは最高のプレイをした！！',
+                  'あいつも３年間がんばってきた男なんだ 侮ってはいけなかった...',
+                  'キミの肉体が…　いや…　細胞が瞬間的に反応した',
+                  'そう…　今でいえば　オレが仙道　キミが流川みたいなもんだ',
+                  'それはお前だ　「ビッグ・ジュン」',
+                  'なぜキミがそこにいるんだぁ!?',
+                  '小暮はある程度はなしといていい!!',
+                  'キミをでかくすることはできない。たとえオレがどんな名コーチでもな',
+                  'もーーー我慢できんっ!!!',
+                ]
+                serifs.sample
+              end
