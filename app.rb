@@ -128,8 +128,8 @@ post '/callback' do
                   "altText": "this is a buttons template",
                   "template": {
                     "type": "buttons",
-                    "thumbnailImageUrl": "https://pbs.twimg.com/media/B_QHDbSVEAA1adJ.jpg",
-                    "title": "Menu",
+                    #"thumbnailImageUrl": "https://pbs.twimg.com/media/B_QHDbSVEAA1adJ.jpg",
+                    #"title": "Menu",
                     "text": "Please select",
                     "actions": [
                       {
