@@ -46,8 +46,8 @@ post '/callback' do
         if event.message['text'] == "image"
           message = {
             type: "image",
-            originalContentUrl: "https://example.com/original.jpg",
-            previewImageUrl: "https://example.com/preview.jpg"
+            originalContentUrl: "https://example.com/#{event.message['text']}.jpg",
+            previewImageUrl: "https://example.com/#{event.message['text']}.jpg"
           }
         else
           message = {
@@ -56,7 +56,7 @@ post '/callback' do
           }
         end
         res = client.reply_message(event['replyToken'], message)
-        # p res
+        p res
         #p res.body
       end
     end
