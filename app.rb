@@ -59,6 +59,8 @@ post '/callback' do
         type = "rich"
       elsif event.message['text'].include?("確認")
         type = "confirm"
+      elsif event.message['text'].include?("ミーティング")
+        type = "meeting"
       else
         type = 'text'
         response_message = event.message['text']
@@ -72,7 +74,12 @@ post '/callback' do
           when 'text'
             message = {
               type: type,
-              text: response_message + "aaa"
+              text: response_message
+            }
+          when 'meeting'
+            message = {
+              type: 'text'
+              text: ""
             }
           when 'image'
             message = {
