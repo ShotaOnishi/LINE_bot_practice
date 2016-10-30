@@ -19,4 +19,4 @@ gem 'require_all'
 gem 'rake'
 
 gem "sinatra-activerecord", :require => 'sinatra/activerecord'
-gem 'sqlite3'
+#gem 'sqlite3'
