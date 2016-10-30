@@ -7,8 +7,8 @@ class RichMessage
             "type": "carousel",
             "columns": [
                 {
-                    "thumbnailImageUrl": choice_image,
-                    "title": "this is menu",
+                    "thumbnailImageUrl": choice_image.picture.to_s,
+                    "title": choice_image.name.to_s,
                     "text": "description",
                     "actions": [
                         {
@@ -29,8 +29,8 @@ class RichMessage
                     ]
                 },
                 {
-                    "thumbnailImageUrl": choice_image,
-                    "title": "this is menu",
+                    "thumbnailImageUrl": choice_image.picture.to_s,
+                    "title": choice_image.name.to_s,
                     "text": "description",
                     "actions": [
                         {
@@ -70,6 +70,5 @@ class RichMessage
     # images.sample
     num = rand(3..11)
     menu = Menu.find(num)
-    menu.picture.to_s
 end
 end
