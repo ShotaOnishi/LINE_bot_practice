@@ -4,6 +4,8 @@ require 'json'
 require 'rest-client'
 require 'active_record'
 require 'pg'
+require 'require_all'
+require_all 'model'
 
 # DB設定ファイルの読み込み
 configure :production do
@@ -13,9 +15,11 @@ configure :production do
   # end
 end
 
-require 'require_all'
+class Menu < ActiveRecord::Base
+end
 
-require_all 'model'
+p Menu.all
+
 
 module Line
   module Bot
