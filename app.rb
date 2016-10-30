@@ -9,7 +9,7 @@ require 'pg'
 ActiveRecord::Base.configurations = YAML.load_file('database.yml')
 ActiveRecord::Base.establish_connection('production')
 
-class Topic < ActiveRecord::Base
+class Menu < ActiveRecord::Base
 end
 
 module Line
@@ -35,8 +35,8 @@ def client
   }
 end
 
-get '/db_test.json' do
-  content_type :json, :charset => 'unicode'
+get '/db_test' do
+  content_type :json, :charset => 'utf-8'
   menus = Menu.order("created_at DESC").limit(2)
   menus.to_json(:root => false)
 end
