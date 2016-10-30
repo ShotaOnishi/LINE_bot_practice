@@ -21,7 +21,8 @@ def choice_image
     #     'https://pbs.twimg.com/media/B5RSK0pCYAA45il.png'
     # ]
     # images.sample
-    menu = Menu.sample
+    num = rand(1..5)
+    menu = Menu.find(num)
     menu.picture.to_s
 end
 end
