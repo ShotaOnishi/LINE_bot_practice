@@ -1,0 +1,10 @@
+<%@menus.each do |menu|%>
+  <p><%=menu.name%></p>
+  <ul>
+    <li><%=menu.value%></li>
+    <li><%=menu.picture%></li>
+    <li><%=menu.category%></li>
+  </ul>
+<%end%>
+
+  <a href="/new">Add menu</a>

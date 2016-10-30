@@ -49,6 +49,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rake (11.3.0)
     require_all (1.3.3)
     rest-client (2.0.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -58,6 +59,9 @@ GEM
       rack (~> 1.5)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
+    sinatra-activerecord (2.0.11)
+      activerecord (>= 3.2)
+      sinatra (~> 1.0)
     sinatra-contrib (1.4.7)
       backports (>= 2.0)
       multi_json
@@ -89,9 +93,11 @@ DEPENDENCIES
   httpclient
   line-bot-api
   pg
+  rake
   require_all
   rest-client
   sinatra
+  sinatra-activerecord
   sinatra-contrib
   sinatra-reloader
   thin

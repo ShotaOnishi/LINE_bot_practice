@@ -4,6 +4,9 @@ require 'json'
 require 'rest-client'
 require 'active_record'
 require 'pg'
+require 'require_all'
+# require 'date'
+require_all 'model'
 
 # DB設定ファイルの読み込み
 configure :production do
@@ -13,9 +16,13 @@ configure :production do
   # end
 end
 
-require 'require_all'
+configure :development do
+  ActiveRecord::Base.configurations = YAML.load_file('database.yml')
+  ActiveRecord::Base.establish_connection(:development)
+end
 
-require_all 'model'
+class Menu < ActiveRecord::Base
+end
 
 module Line
   module Bot
@@ -40,13 +47,28 @@ def client
   }
 end
 
-get '/db_test' do
+get '/' do
 #   content_type :json, :charset => 'utf-8'
 #   menus = Menu.order("created_at DESC").limit(2)
 #   menus.to_json(:root => false)
-@menu = Menu.first
-"#{@menu.name}"
+@menus = Menu.all
+erb :index
 end
+
+get '/new' do
+  erb :new
+end
+
+post '/new' do
+  Menu.create(:name => params[:name],
+    :value => params[:value],
+    :picture => params[:picture],
+    :category => params[:category],
+    :created_at => "2016-10-29")
+  redirect '/'
+end
+
+
 
 post '/callback' do
   body = request.body.read
