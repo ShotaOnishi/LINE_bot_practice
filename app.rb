@@ -69,6 +69,22 @@ post '/new' do
 end
 
 
+get '/delete/:id' do
+  @manu = Menu.first(:id => params[:id])
+  erb :delete
+end
+
+post '/delete/:id' do
+  if params.has_key?("ok")
+    item = Menu.first(:id => params[:id])
+    manu.destroy
+    redirect '/'
+  else
+    redirect '/'
+  end
+end
+
+
 
 post '/callback' do
   body = request.body.read
