@@ -16,3 +16,5 @@ gem "httpclient"
 gem "activerecord"
 gem 'pg'
 gem 'require_all'
+
+gem "sinatra-activerecord"

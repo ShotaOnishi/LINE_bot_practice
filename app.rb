@@ -2,7 +2,7 @@ require 'sinatra'   # gem 'sinatra'
 require 'line/bot'  # gem 'line-bot-api'
 require 'json'
 require 'rest-client'
-require 'active_record'
+require 'activerecord'
 require 'pg'
 
 # DB設定ファイルの読み込み
@@ -44,8 +44,8 @@ get '/db_test' do
 #   content_type :json, :charset => 'utf-8'
 #   menus = Menu.order("created_at DESC").limit(2)
 #   menus.to_json(:root => false)
-@menu = Menu.first
-"#{@menu.name}"
+menu = Menus.first
+"#{menu.name}"
 end
 
 post '/callback' do
