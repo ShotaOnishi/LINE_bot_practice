@@ -70,14 +70,14 @@ end
 
 
 get '/delete/:id' do
-  @menu = Menu.first(:id => params[:id])
+  @menu = Menu.find(:id => params[:id])
   erb :delete
 end
 
 post '/delete/:id' do
   if params.has_key?("ok")
-    item = Menu.first(:id => params[:id])
-    manu.destroy
+    menu = Menu.find(:id => params[:id])
+    menu.destroy
     redirect '/'
   else
     redirect '/'
