@@ -21,7 +21,6 @@ class ImageMessage
     #     'https://pbs.twimg.com/media/B5RSK0pCYAA45il.png'
     # ]
     images = [
-        'http://res.cloudinary.com/hmfnscv52/image/upload/v1473405678/zjglt3ch9img4ukxiwrw.png',
         'http://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.png'
     ]
     images.sample
