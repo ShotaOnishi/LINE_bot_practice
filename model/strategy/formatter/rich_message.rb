@@ -7,7 +7,7 @@ class RichMessage
             "type": "carousel",
             "columns": [
                 {
-                    "thumbnailImageUrl": "https://pbs.twimg.com/media/BuHSdwCCAAELvUK.jpg",
+                    "thumbnailImageUrl": ImageMessage.choice_image,
                     "title": "this is menu",
                     "text": "description",
                     "actions": [
@@ -29,7 +29,7 @@ class RichMessage
                     ]
                 },
                 {
-                    "thumbnailImageUrl": "https://s-media-cache-ak0.pinimg.com/564x/f2/a2/4f/f2a24f58f13823def4053e1ae32f2557.jpg",
+                    "thumbnailImageUrl": ImageMessage.choice_image,
                     "title": "this is menu",
                     "text": "description",
                     "actions": [
