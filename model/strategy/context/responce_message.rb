@@ -1,13 +1,12 @@
 class ResponceMessage
+  attr_reader :event
   attr_accessor :formatter
 
-  def initialize(formatter)
+  def initialize(formatter, event=nil)
     @formatter = formatter
-  end
-
-  def self.init_with_event(formatter, event)
-    @event = event
-    @formatter = formatter
+    unless event.nil?
+      @event = event
+    end
   end
 
   def output_message

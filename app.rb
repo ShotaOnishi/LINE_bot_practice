@@ -73,7 +73,7 @@ post '/callback' do
     elsif event.message['text'].include?("ミーティング")
       message = ResponceMessage.new(MeetingMessage.new)
     else
-      message = ResponceMessage.init_with_event(DefaultMessage.new, event)
+      message = ResponceMessage.new(DefaultMessage.new, event)
     end
 
     case event.type
