@@ -4,7 +4,7 @@ production:
   host: ec2-54-243-212-122.compute-1.amazonaws.com
   username: ptytiehzjqsggl
   password: ENV["DB_PASSWORD"]
-  encoding: utf8
+  encoding: utf-8
   port: 5432
   psql: heroku pg:psql --app gentle-reef-68665 DATABASE
   #url: ENV["DATBASE_URL"]
