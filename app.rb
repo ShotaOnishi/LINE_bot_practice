@@ -2,7 +2,7 @@ require 'sinatra'   # gem 'sinatra'
 require 'line/bot'  # gem 'line-bot-api'
 require 'json'
 require 'rest-client'
-require 'activerecord'
+require 'active_record'
 require 'pg'
 
 # DB設定ファイルの読み込み
