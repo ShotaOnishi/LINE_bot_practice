@@ -5,9 +5,9 @@ class ImageMessage
         :originalContentUrl => choice_image,
         :previewImageUrl => choice_image
     }
-  end
+end
 
-  def choice_image
+def choice_image
     # images = [
     #     'https://pbs.twimg.com/media/B_QHDbSVEAA1adJ.jpg',
     #     'https://pbs.twimg.com/media/BuHSdwCCAAELvUK.jpg',
@@ -21,8 +21,12 @@ class ImageMessage
     #     'https://pbs.twimg.com/media/B5RSK0pCYAA45il.png'
     # ]
     images = [
+        'http://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.png',
+        'http://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.png',
+        'http://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.png',
+        'http://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.png',
         'http://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.png'
     ]
     images.sample
-  end
+end
 end
