@@ -16,6 +16,11 @@ configure :production do
   # end
 end
 
+configure :development do
+  ActiveRecord::Base.configurations = YAML.load_file('database.yml')
+  ActiveRecord::Base.establish_connection(:development)
+end
+
 class Menu < ActiveRecord::Base
 end
 

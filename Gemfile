@@ -16,5 +16,7 @@ gem "httpclient"
 gem "activerecord"
 gem 'pg'
 gem 'require_all'
+gem 'rake'
 
-gem "sinatra-activerecord"
+gem "sinatra-activerecord", :require => 'sinatra/activerecord'
+gem 'sqlite3'
