@@ -21,11 +21,6 @@ def choice_image
     #     'https://pbs.twimg.com/media/B5RSK0pCYAA45il.png'
     # ]
     images = [
-        'https://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.png',
-        'https://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.png',
-        'https://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.png',
-        'https://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.png',
-        'https://res.cloudinary.com/hmfnscv52/image/upload/v1475767645/ncsg57zhmhd0zfgqwpq5.png'
     ]
     images.sample
 end
