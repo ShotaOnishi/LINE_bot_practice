@@ -7,7 +7,7 @@ require 'pg'
 
 # DB設定ファイルの読み込み
 ActiveRecord::Base.configurations = YAML.load_file('database.yml')
-ActiveRecord::Base.establish_connection('development')
+ActiveRecord::Base.establish_connection('production')
 
 class Topic < ActiveRecord::Base
 end

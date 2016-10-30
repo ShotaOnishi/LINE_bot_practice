@@ -1,4 +1,4 @@
-development:
+production:
   adapter: postgresql
   database: d37bo0v5i9jol6
   host: ec2-54-243-212-122.compute-1.amazonaws.com
