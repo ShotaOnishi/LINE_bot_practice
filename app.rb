@@ -63,9 +63,25 @@ post '/new' do
   Menu.create(:name => params[:name],
     :value => params[:value],
     :picture => params[:picture],
-    :category => params[:category],
-    :created_at => "2016-10-29")
+    :category => params[:category]
+    )
   redirect '/'
+end
+
+
+get '/delete/:id' do
+  @menu = Menu.find(params[:id])
+  erb :delete
+end
+
+post '/delete/:id' do
+  if params.has_key?("ok")
+    menu = Menu.find(params[:id])
+    menu.destroy
+    redirect '/'
+  else
+    redirect '/'
+  end
 end
 
 
