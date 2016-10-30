@@ -5,7 +5,7 @@ require 'rest-client'
 require 'active_record'
 require 'pg'
 require 'require_all'
-require 'date'
+# require 'date'
 require_all 'model'
 
 # DB設定ファイルの読み込み
@@ -56,12 +56,12 @@ end
 
 post '/new' do
   Menu.create(:name => params[:name],
-              :value => params[:value],
-              :picture => params[:picture],
-              :category => params[:category]
-              :created_at => Time.now)
+    :value => params[:value],
+    :picture => params[:picture],
+    :category => params[:category],
+    :created_at => "2016-10-29")
   redirect '/'
-  end
+end
 
 
 
