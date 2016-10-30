@@ -1,2 +1,2 @@
 production:
-  url: <%= ENV['DB_URL'] %>
+  url: <%= ENV['DATABASE_URL'] %>
