@@ -70,7 +70,7 @@ end
 
 
 get '/delete/:id' do
-  @menu = Menu.finf(params[:id])
+  @menu = Menu.find(params[:id])
   erb :delete
 end
 
