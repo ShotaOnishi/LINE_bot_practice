@@ -11,3 +11,7 @@ gem "sinatra-contrib"
 gem 'sinatra-reloader'
 gem 'thin'
 gem "httpclient"
+
+#gem "mysql2"
+gem "activerecord"
+gem 'pg'
