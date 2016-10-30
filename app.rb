@@ -51,7 +51,7 @@ get '/' do
 #   content_type :json, :charset => 'utf-8'
 #   menus = Menu.order("created_at DESC").limit(2)
 #   menus.to_json(:root => false)
-@menus = List.all
+@menus = Menu.all
 erb :index
 end
 
@@ -60,7 +60,7 @@ get '/new' do
 end
 
 post '/new' do
-  List.create(:name => params[:name],
+  Menu.create(:name => params[:name],
     :value => params[:value],
     :picture => params[:picture],
     :category => params[:category],
