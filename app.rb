@@ -70,7 +70,7 @@ end
 
 
 get '/delete/:id' do
-  @manu = Menu.first(:id => params[:id])
+  @menu = Menu.first(:id => params[:id])
   erb :delete
 end
 
