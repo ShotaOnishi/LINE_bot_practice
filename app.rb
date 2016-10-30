@@ -44,7 +44,7 @@ get '/db_test' do
 #   content_type :json, :charset => 'utf-8'
 #   menus = Menu.order("created_at DESC").limit(2)
 #   menus.to_json(:root => false)
-menu = Menus.first
+menu = Menu.first
 "#{menu.name}"
 end
 
