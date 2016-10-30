@@ -5,6 +5,7 @@ require 'rest-client'
 require 'active_record'
 require 'pg'
 require 'require_all'
+require 'date'
 require_all 'model'
 
 # DB設定ファイルの読み込み
@@ -48,6 +49,19 @@ get '/' do
 @menus = Menu.all
 erb :index
 end
+
+get '/new' do
+  erb :new
+end
+
+post '/new' do
+  Menu.create(:name => params[:name],
+              :value => params[:value],
+              :picture => params[:picture],
+              :category => params[:category]
+              :created_at => Time.now)
+  redirect '/'
+  end
 
 
 
