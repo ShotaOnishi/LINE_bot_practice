@@ -21,7 +21,7 @@ def choice_image
     #     'https://pbs.twimg.com/media/B5RSK0pCYAA45il.png'
     # ]
     # images.sample
-    menu = Menu.first
+    menu = Menu.sample
     menu.picture.to_s
 end
 end
