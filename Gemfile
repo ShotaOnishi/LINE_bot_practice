@@ -15,3 +15,4 @@ gem "httpclient"
 #gem "mysql2"
 gem "activerecord"
 gem 'pg'
+gem 'require_all'
