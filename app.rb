@@ -7,7 +7,7 @@ require 'pg'
 
 # DB設定ファイルの読み込み
 configure :production do
-  ActiveRecord::Base.establish_connection(ENV['DB_URL'])
+  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
   # use Rack::Auth::Basic do |username, password|
   #   username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD']
   # end
