@@ -7,5 +7,5 @@ production:
   encoding: unicode
   port: 5432
   psql: heroku pg:psql --app gentle-reef-68665 DATABASE
-  url: ENV["DB_URL"]
+  url: ENV["DATBASE_URL"]
   pool: 5
