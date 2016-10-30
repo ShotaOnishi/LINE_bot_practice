@@ -18,9 +18,6 @@ end
 class Menu < ActiveRecord::Base
 end
 
-p Menu.all
-
-
 module Line
   module Bot
     class HTTPClient
@@ -44,13 +41,15 @@ def client
   }
 end
 
-get '/db_test' do
+get '/' do
 #   content_type :json, :charset => 'utf-8'
 #   menus = Menu.order("created_at DESC").limit(2)
 #   menus.to_json(:root => false)
-menu = Menu.first
-"#{menu.name}"
+@menus = Menu.all
+erb :index
 end
+
+
 
 post '/callback' do
   body = request.body.read
