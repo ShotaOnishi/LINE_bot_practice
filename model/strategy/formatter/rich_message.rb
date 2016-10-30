@@ -1,5 +1,7 @@
 class RichMessage
   def output_message(context)
+    menu1 = self.choice_image
+    menu2 = self.choice_image
     {
         "type": "template",
         "altText": "this is a carousel template",
@@ -7,8 +9,8 @@ class RichMessage
             "type": "carousel",
             "columns": [
                 {
-                    "thumbnailImageUrl": choice_image.picture.to_s,
-                    "title": choice_image.name.to_s,
+                    "thumbnailImageUrl": menu1.picture.to_s,
+                    "title": menu1.name.to_s,
                     "text": "description",
                     "actions": [
                         {
@@ -29,8 +31,8 @@ class RichMessage
                     ]
                 },
                 {
-                    "thumbnailImageUrl": choice_image.picture.to_s,
-                    "title": choice_image.name.to_s,
+                    "thumbnailImageUrl": menu2.picture.to_s,
+                    "title": menu2.name.to_s,
                     "text": "description",
                     "actions": [
                         {
