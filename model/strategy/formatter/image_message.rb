@@ -20,12 +20,8 @@ def choice_image
     #     'https://pbs.twimg.com/media/Bc7INKDCQAAp1d8.jpg',
     #     'https://pbs.twimg.com/media/B5RSK0pCYAA45il.png'
     # ]
-    images = [
-        'https://res.cloudinary.com/hmfnscv52/image/upload/v1477837218/kuehdcwcbdc49mfkpfij.png',
-        'https://res.cloudinary.com/hmfnscv52/image/upload/v1477837251/it6rsnvr999htz0k4mwh.png',
-        'https://res.cloudinary.com/hmfnscv52/image/upload/v1477837286/eutr6extozlex5gfpynt.png',
-        'https://res.cloudinary.com/hmfnscv52/image/upload/v1477837316/cqv23xsye53hb8inlgz6.png'
-    ]
-    images.sample
+    # images.sample
+    menu = Menu.first
+    menu.picture.to_s
 end
 end
