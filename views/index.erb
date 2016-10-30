@@ -1,5 +1,5 @@
 <%@menus.each do |menu|%>
-  <p><%=menu.name%></p>
+  <p><%=menu.name%><span><a href="/delete/<%= menu[:id] %>" class="btn btn-danger">Delete</a></span></p>
   <ul>
     <li><%=menu.value%></li>
     <li><%=menu.picture%></li>
