@@ -6,11 +6,11 @@ require 'active_record'
 require 'pg'
 
 # DB設定ファイルの読み込み
-ActiveRecord::Base.configurations = YAML.load_file('database.yml')
-ActiveRecord::Base.establish_connection('production')
+# ActiveRecord::Base.configurations = YAML.load_file('database.yml')
+# ActiveRecord::Base.establish_connection('production')
 
-class Menu < ActiveRecord::Base
-end
+# class Menu < ActiveRecord::Base
+# end
 
 module Line
   module Bot
@@ -35,11 +35,11 @@ def client
   }
 end
 
-get '/db_test' do
-  content_type :json, :charset => 'utf-8'
-  menus = Menu.order("created_at DESC").limit(2)
-  menus.to_json(:root => false)
-end
+# get '/db_test' do
+#   content_type :json, :charset => 'utf-8'
+#   menus = Menu.order("created_at DESC").limit(2)
+#   menus.to_json(:root => false)
+# end
 
 post '/callback' do
   body = request.body.read
