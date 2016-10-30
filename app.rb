@@ -2,7 +2,15 @@ require 'sinatra'   # gem 'sinatra'
 require 'line/bot'  # gem 'line-bot-api'
 require 'json'
 require 'rest-client'
+require 'active_record'
+require 'pg'
 
+# DB設定ファイルの読み込み
+ActiveRecord::Base.configurations = YAML.load_file('database.yml')
+ActiveRecord::Base.establish_connection('development')
+
+class Topic < ActiveRecord::Base
+end
 
 module Line
   module Bot
@@ -25,6 +33,12 @@ def client
     config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
     config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
   }
+end
+
+get '/db_test.json' do
+  content_type :json, :charset => 'unicode'
+  menus = Menu.order("created_at DESC").limit(2)
+  menus.to_json(:root => false)
 end
 
 post '/callback' do
