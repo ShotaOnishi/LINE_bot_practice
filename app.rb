@@ -102,6 +102,7 @@ post '/callback' do
       case event
       when Line::Bot::Event::Postback
         message = ResponceMessage.new(ImageMessage.new)
+        client.reply_message(event['replyToken'], message.output_message)
       when Line::Bot::Event::Message
         if event.message['text'].include?("画像")
           message = ResponceMessage.new(ImageMessage.new)
@@ -126,17 +127,17 @@ post '/callback' do
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
         end
-      end
-      case event.type
-      when Line::Bot::Event::MessageType::Text
-        res = client.reply_message(event['replyToken'], message.output_message)
-        p res
-      when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
-        response = client.get_message_content(event.message['id'])
-        tf = Tempfile.open("content")
-        tf.write(response.body)
-      else
-        p "Noevent"
+        case event.type
+        when Line::Bot::Event::MessageType::Text
+          res = client.reply_message(event['replyToken'], message.output_message)
+          p res
+        when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
+          response = client.get_message_content(event.message['id'])
+          tf = Tempfile.open("content")
+          tf.write(response.body)
+        else
+          p "Noevent"
+        end
       end
     }
   end
