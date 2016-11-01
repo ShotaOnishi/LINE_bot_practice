@@ -102,11 +102,11 @@ post '/callback' do
       case event
       when Line::Bot::Event::Postback
         if event["postback"]["data"] == "DON"
-          message = ResponceMessage.new(RemarkMessage.new)
+          message = ResponceMessage.new(DonMessage.new)
         elsif event["postback"]["data"] == "MEN"
-          message = ResponceMessage.new(StickerMessage.new)
+          message = ResponceMessage.new(DonMessage.new)
         elsif event["postback"]["data"] == "DES"
-          message = ResponceMessage.new(ImageMessage.new)
+          message = ResponceMessage.new(DonMessage.new)
         end
         client.reply_message(event['replyToken'], message.output_message)
       when Line::Bot::Event::Message
