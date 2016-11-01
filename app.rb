@@ -101,7 +101,13 @@ post '/callback' do
     events.each { |event|
       case event
       when Line::Bot::Event::Postback
-        message = ResponceMessage.new(ImageMessage.new)
+        if event["postback"]["data"] == "DON"
+          message = ResponceMessage.new(RemarkMessage.new)
+        elsif event["postback"]["data"] == "MEN"
+          message = ResponceMessage.new(StickerMessage.new)
+        elsif event["postback"]["data"] == "DES"
+          message = ResponceMessage.new(ImageMessage.new)
+        end
         client.reply_message(event['replyToken'], message.output_message)
       when Line::Bot::Event::Message
         if event.message['text'].include?("画像")

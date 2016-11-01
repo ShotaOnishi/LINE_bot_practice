@@ -12,17 +12,17 @@ class OrderMessage
                 {
                     "type": "postback",
                     "label": "丼",
-                    "data": "action=buy&itemid=123"
+                    "data": "DON"
                 },
                 {
                     "type": "postback",
                     "label": "麺類",
-                    "data": "action=add&itemid=123"
+                    "data": "MEN"
                 },
                 {
                     "type": "postback",
                     "label": "デザート",
-                    "data": "action=add&itemid=123"
+                    "data": "DES"
                 }
             ]
         }
