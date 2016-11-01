@@ -102,7 +102,7 @@ post '/callback' do
       case event
       when Line::Bot::Event::Postback
         message = ResponceMessage.new(ImageMessage.new)
-      when Line::Bot::Event::Postback
+      when Line::Bot::Event::Message
         if event.message['text'].include?("画像")
           message = ResponceMessage.new(ImageMessage.new)
         elsif event.message['text'].include?("名言")
