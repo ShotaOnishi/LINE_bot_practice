@@ -100,7 +100,7 @@ post '/callback' do
 
     events.each { |event|
       if !event["postback"].nil?
-        event.message['text'] = "hello"
+        message = ResponceMessage.new(ImageMessage.new)
       # case event["postback"]["label"]
       # when "丼"
       #   message = ResponceMessage.new(RichMessage.new)
