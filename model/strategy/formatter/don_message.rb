@@ -1,4 +1,4 @@
-class RichMessage
+class DonMessage
   def output_message(context)
     menu1 = self.choice_image
     menu2 = self.choice_image
