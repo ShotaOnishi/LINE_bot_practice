@@ -16,7 +16,7 @@ class DonMessage
             "columns": [
                 {
                     "thumbnailImageUrl": order[0].picture.to_s,
-                    "title": menu1.name.to_s,
+                    "title": order[0].name.to_s,
                     "text": "description",
                     "actions": [
                         {
@@ -38,7 +38,7 @@ class DonMessage
                 },
                 {
                     "thumbnailImageUrl": order[1].picture.to_s,
-                    "title": menu2.name.to_s,
+                    "title": order[1].name.to_s,
                     "text": "description",
                     "actions": [
                         {
@@ -60,7 +60,7 @@ class DonMessage
                 },
                 {
                     "thumbnailImageUrl": order[2].picture.to_s,
-                    "title": menu3.name.to_s,
+                    "title": order[2].name.to_s,
                     "text": "description",
                     "actions": [
                         {
