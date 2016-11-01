@@ -3,9 +3,9 @@ class DonMessage
         @key = key
   end
   def output_message(context)
-    menu1 = self.choice_image(@key)
-    menu2 = self.choice_image(@key)
-    menu3 = self.choice_image(@key)
+    menu1 = self.choice_image(@key,1)
+    menu2 = self.choice_image(@key, 2)
+    menu3 = self.choice_image(@key, 3)
     {
         "type": "template",
         "altText": "this is a carousel template",
@@ -82,7 +82,7 @@ class DonMessage
         }
     }
   end
-  def choice_image(key)
+  def choice_image(key, num)
     # images = [
     #     'https://pbs.twimg.com/media/B_QHDbSVEAA1adJ.jpg',
     #     'https://pbs.twimg.com/media/BuHSdwCCAAELvUK.jpg',
@@ -96,6 +96,7 @@ class DonMessage
     #     'https://pbs.twimg.com/media/B5RSK0pCYAA45il.png'
     # ]
     # images.sample
-    menu = Menu.where(category: key).first
+    menu = Menu.where(category: key)
+    menu.find(num)
 end
 end
