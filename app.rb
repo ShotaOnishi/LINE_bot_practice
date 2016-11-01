@@ -95,6 +95,20 @@ post '/callback' do
     end
 
     events = client.parse_events_from(body)
+
+    if !events["postback"].nil?
+      events = "hello"
+      # case event["postback"]["label"]
+      # when "丼"
+      #   message = ResponceMessage.new(RichMessage.new)
+      # when "麺類"
+      #   message = ResponceMessage.new(RichMessage.new)
+      # when "デザート"
+      #   message = ResponceMessage.new(RichMessage.new)
+      # end
+    end
+
+
     events.each { |event|
       if event.message['text'].include?("画像")
         message = ResponceMessage.new(ImageMessage.new)
