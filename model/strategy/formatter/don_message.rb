@@ -1,8 +1,11 @@
-class DonMessage(key)
+class DonMessage
+  def initialize(key)
+        @key = key
+  end
   def output_message(context)
-    menu1 = self.choice_image(key)
-    menu2 = self.choice_image(key)
-    menu3 = self.choice_image(key)
+    menu1 = self.choice_image(@key)
+    menu2 = self.choice_image(@key)
+    menu3 = self.choice_image(@key)
     {
         "type": "template",
         "altText": "this is a carousel template",
