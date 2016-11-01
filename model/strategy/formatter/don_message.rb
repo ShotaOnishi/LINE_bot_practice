@@ -3,9 +3,11 @@ class DonMessage
         @key = key
   end
   def output_message(context)
-    menu1 = self.choice_image(@key,1)
-    menu2 = self.choice_image(@key, 2)
-    menu3 = self.choice_image(@key, 3)
+    menus = self.choice_image(@key)
+    order = []
+    menus.each_with_index do |menu, i|
+        order[i] = menu
+    end
     {
         "type": "template",
         "altText": "this is a carousel template",
@@ -13,7 +15,7 @@ class DonMessage
             "type": "carousel",
             "columns": [
                 {
-                    "thumbnailImageUrl": menu1.picture.to_s,
+                    "thumbnailImageUrl": order[0].picture.to_s,
                     "title": menu1.name.to_s,
                     "text": "description",
                     "actions": [
@@ -35,7 +37,7 @@ class DonMessage
                     ]
                 },
                 {
-                    "thumbnailImageUrl": menu2.picture.to_s,
+                    "thumbnailImageUrl": order[1].picture.to_s,
                     "title": menu2.name.to_s,
                     "text": "description",
                     "actions": [
@@ -57,7 +59,7 @@ class DonMessage
                     ]
                 },
                 {
-                    "thumbnailImageUrl": menu3.picture.to_s,
+                    "thumbnailImageUrl": order[2].picture.to_s,
                     "title": menu3.name.to_s,
                     "text": "description",
                     "actions": [
@@ -82,7 +84,7 @@ class DonMessage
         }
     }
   end
-  def choice_image(key, num)
+  def choice_image(key)
     # images = [
     #     'https://pbs.twimg.com/media/B_QHDbSVEAA1adJ.jpg',
     #     'https://pbs.twimg.com/media/BuHSdwCCAAELvUK.jpg',
@@ -96,7 +98,7 @@ class DonMessage
     #     'https://pbs.twimg.com/media/B5RSK0pCYAA45il.png'
     # ]
     # images.sample
-    menu = Menu.where(category: key)
-    menu.find(num)
+    menus = []
+    menus = Menu.where(category: key)
 end
 end
