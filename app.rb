@@ -100,15 +100,8 @@ post '/callback' do
 
     events.each { |event|
       if !event["postback"].nil?
-        message = ResponceMessage.new(ImageMessage.new)
-      # case event["postback"]["label"]
-      # when "丼"
-      #   message = ResponceMessage.new(RichMessage.new)
-      # when "麺類"
-      #   message = ResponceMessage.new(RichMessage.new)
-      # when "デザート"
-      #   message = ResponceMessage.new(RichMessage.new)
-      # end
+        message = ResponceMessage.new(DefaultMessage.new, event)
+        fetch_weather(:today) {|weather| res = client.reply_message(event['replyToken'], message.output_message) }
     else
       if event.message['text'].include?("画像")
         message = ResponceMessage.new(ImageMessage.new)
@@ -146,5 +139,28 @@ post '/callback' do
       p "Noevent"
     end
   }
+end
+
+
+
+
+
+def fetch_weather(date_sym)
+  date = {
+    today: "今日",
+    tomorrow: "明日"
+  }
+
+  request_endpoint = "http://weather.livedoor.com/forecast/webservice/json/v1?city=130010"
+  RestClient.get request_endpoint do |response, request, result, &block|
+    json = JSON.parse response
+    weather = "分かりません"
+    json["forecasts"].each do |forecast|
+      if forecast["dateLabel"] == date[date_sym]
+        weather = forecast["telop"]
+      end
+    end
+    yield weather
+  end
 end
 
