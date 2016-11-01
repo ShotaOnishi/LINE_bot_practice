@@ -114,6 +114,8 @@ post '/callback' do
         message = ResponceMessage.new(ConfirmMessage.new)
       elsif event.message['text'].include?("ミーティング")
         message = ResponceMessage.new(MeetingMessage.new)
+      elsif event.message['text'].include?("注文")
+        message = ResponceMessage.new(OrderMessage.new)
       else
         message = ResponceMessage.new(DefaultMessage.new, event)
       end
