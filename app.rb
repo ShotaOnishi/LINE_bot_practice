@@ -110,29 +110,29 @@ post '/callback' do
       #   message = ResponceMessage.new(RichMessage.new)
       # end
     else
-    end
-    if event.message['text'].include?("画像")
-      message = ResponceMessage.new(ImageMessage.new)
-    elsif event.message['text'].include?("名言")
-      message = ResponceMessage.new(RemarkMessage.new)
-    elsif event.message['text'].include?("住所")
-      message = ResponceMessage.new(LocationMessage.new)
-    elsif event.message['text'].include?("スタンプ")
-      message = ResponceMessage.new(StickerMessage.new)
-    elsif event.message['text'].include?("イメージリンク")
-      message = ResponceMessage.new(ImagemapMessage.new)
-    elsif event.message['text'].include?("ボタン")
-      message = ResponceMessage.new(ButtonMessage.new)
-    elsif event.message['text'].include?("リッチ")
-      message = ResponceMessage.new(RichMessage.new)
-    elsif event.message['text'].include?("確認")
-      message = ResponceMessage.new(ConfirmMessage.new)
-    elsif event.message['text'].include?("ミーティング")
-      message = ResponceMessage.new(MeetingMessage.new)
-    elsif event.message['text'].include?("注文")
-      message = ResponceMessage.new(OrderMessage.new)
-    else
-      message = ResponceMessage.new(DefaultMessage.new, event)
+      if event.message['text'].include?("画像")
+        message = ResponceMessage.new(ImageMessage.new)
+      elsif event.message['text'].include?("名言")
+        message = ResponceMessage.new(RemarkMessage.new)
+      elsif event.message['text'].include?("住所")
+        message = ResponceMessage.new(LocationMessage.new)
+      elsif event.message['text'].include?("スタンプ")
+        message = ResponceMessage.new(StickerMessage.new)
+      elsif event.message['text'].include?("イメージリンク")
+        message = ResponceMessage.new(ImagemapMessage.new)
+      elsif event.message['text'].include?("ボタン")
+        message = ResponceMessage.new(ButtonMessage.new)
+      elsif event.message['text'].include?("リッチ")
+        message = ResponceMessage.new(RichMessage.new)
+      elsif event.message['text'].include?("確認")
+        message = ResponceMessage.new(ConfirmMessage.new)
+      elsif event.message['text'].include?("ミーティング")
+        message = ResponceMessage.new(MeetingMessage.new)
+      elsif event.message['text'].include?("注文")
+        message = ResponceMessage.new(OrderMessage.new)
+      else
+        message = ResponceMessage.new(DefaultMessage.new, event)
+      end
     end
     case event.type
     when Line::Bot::Event::MessageType::Text
