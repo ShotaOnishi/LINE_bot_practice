@@ -96,8 +96,11 @@ post '/callback' do
 
     events = client.parse_events_from(body)
 
-    if !events["postback"].nil?
-      events = "hello"
+
+
+    events.each { |event|
+      if !event["postback"].nil?
+        event.message['text'] = "hello"
       # case event["postback"]["label"]
       # when "丼"
       #   message = ResponceMessage.new(RichMessage.new)
@@ -106,45 +109,42 @@ post '/callback' do
       # when "デザート"
       #   message = ResponceMessage.new(RichMessage.new)
       # end
+    else
     end
-
-
-    events.each { |event|
-      if event.message['text'].include?("画像")
-        message = ResponceMessage.new(ImageMessage.new)
-      elsif event.message['text'].include?("名言")
-        message = ResponceMessage.new(RemarkMessage.new)
-      elsif event.message['text'].include?("住所")
-        message = ResponceMessage.new(LocationMessage.new)
-      elsif event.message['text'].include?("スタンプ")
-        message = ResponceMessage.new(StickerMessage.new)
-      elsif event.message['text'].include?("イメージリンク")
-        message = ResponceMessage.new(ImagemapMessage.new)
-      elsif event.message['text'].include?("ボタン")
-        message = ResponceMessage.new(ButtonMessage.new)
-      elsif event.message['text'].include?("リッチ")
-        message = ResponceMessage.new(RichMessage.new)
-      elsif event.message['text'].include?("確認")
-        message = ResponceMessage.new(ConfirmMessage.new)
-      elsif event.message['text'].include?("ミーティング")
-        message = ResponceMessage.new(MeetingMessage.new)
-      elsif event.message['text'].include?("注文")
-        message = ResponceMessage.new(OrderMessage.new)
-      else
-        message = ResponceMessage.new(DefaultMessage.new, event)
-      end
-
-      case event.type
-      when Line::Bot::Event::MessageType::Text
-        res = client.reply_message(event['replyToken'], message.output_message)
-        p res
-      when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
-        response = client.get_message_content(event.message['id'])
-        tf = Tempfile.open("content")
-        tf.write(response.body)
-      else
-        p "Noevent"
-      end
-    }
-  end
+    if event.message['text'].include?("画像")
+      message = ResponceMessage.new(ImageMessage.new)
+    elsif event.message['text'].include?("名言")
+      message = ResponceMessage.new(RemarkMessage.new)
+    elsif event.message['text'].include?("住所")
+      message = ResponceMessage.new(LocationMessage.new)
+    elsif event.message['text'].include?("スタンプ")
+      message = ResponceMessage.new(StickerMessage.new)
+    elsif event.message['text'].include?("イメージリンク")
+      message = ResponceMessage.new(ImagemapMessage.new)
+    elsif event.message['text'].include?("ボタン")
+      message = ResponceMessage.new(ButtonMessage.new)
+    elsif event.message['text'].include?("リッチ")
+      message = ResponceMessage.new(RichMessage.new)
+    elsif event.message['text'].include?("確認")
+      message = ResponceMessage.new(ConfirmMessage.new)
+    elsif event.message['text'].include?("ミーティング")
+      message = ResponceMessage.new(MeetingMessage.new)
+    elsif event.message['text'].include?("注文")
+      message = ResponceMessage.new(OrderMessage.new)
+    else
+      message = ResponceMessage.new(DefaultMessage.new, event)
+    end
+    case event.type
+    when Line::Bot::Event::MessageType::Text
+      res = client.reply_message(event['replyToken'], message.output_message)
+      p res
+    when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
+      response = client.get_message_content(event.message['id'])
+      tf = Tempfile.open("content")
+      tf.write(response.body)
+    else
+      p "Noevent"
+    end
+  }
+end
 
