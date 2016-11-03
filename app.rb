@@ -138,7 +138,7 @@ post '/callback' do
           if cookies[:something] == "in"
             message = ResponceMessage.new(OrderMessage.new)
           else
-            message = ResponceMessage.new(ShowOrderMessage.new)
+            message = ResponceMessage.new(OrderMessage.new)
           end
         elsif event.message["text"].include?("翻訳")
           message = ResponceMessage.new(TranslateMessage.new, event)
