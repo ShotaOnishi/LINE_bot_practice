@@ -1,5 +1,3 @@
-config: utf-8
-
 Menu.create(:name => 'イチゴパフェ', :picture => 'https://res.cloudinary.com/hmfnscv52/image/upload/v1477837218/kuehdcwcbdc49mfkpfij.png', :detail => 'あ', :category => 'デザート', :price => 400)
 Menu.create(:name => 'うどん', :picture => 'https://res.cloudinary.com/hmfnscv52/image/upload/v1477837251/it6rsnvr999htz0k4mwh.png', :detail => 'あ', :category => '麺類', :price => 600)
 Menu.create(:name => 'そば', :picture => 'https://res.cloudinary.com/hmfnscv52/image/upload/v1477837286/eutr6extozlex5gfpynt.png', :detail => 'あ', :category => '麺類', :price => 500)
