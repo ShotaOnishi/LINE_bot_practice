@@ -98,7 +98,10 @@ post '/callback' do
           message = ResponceMessage.new(ShowDonMessage.new("デザート"))
         end
         client.reply_message(event['replyToken'], message.output_message)
+        # puts event['replyToken']
+        # puts event['source']
       when Line::Bot::Event::Message
+        # puts event.source
         if event.message['text'].include?("画像")
           message = ResponceMessage.new(ImageMessage.new)
         elsif event.message['text'].include?("名言")
@@ -118,9 +121,13 @@ post '/callback' do
         elsif event.message['text'].include?("ミーティング")
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
-          mygroup = OrderGroup.where(:user_id => 1)
-          if mygroup.enter = true
-            message = ResponceMessage.new(OrderMessage.new)
+          if OrderGroup.exists?(:user_id => event['source']["userId"])
+            mygroup = OrderGroup.where(:user_id => event['source']["userId"]).last
+            if mygroup.enter == true
+              message = ResponceMessage.new(OrderMessage.new)
+            else
+              message = ResponceMessage.new(ShowOrderMessage.new)
+            end
           else
             message = ResponceMessage.new(ShowOrderMessage.new)
           end
@@ -128,19 +135,24 @@ post '/callback' do
           message = ResponceMessage.new(TranslateMessage.new, event)
         elsif event.message['text'].include?("入店")
           OrderGroup.create(:enter => true,
-                            :start_time => Time.now,
-                            :end_time => Time.now + 60*60*2,
-                            :table => 1,
-                            :user_id => 1
-                            )
+            :start_time => Time.now,
+            :end_time => Time.now + 60*60*2,
+            :table => 1,
+            :user_id => event['source']["userId"]
+            )
           message = ResponceMessage.new(DefaultMessage.new, event)
         elsif event.message['text'].include?("退店")
-          mygroup = OrderGroup.where(:user_id => 1)
+          mygroup = OrderGroup.where(:user_id => event['source']["userId"])
           mygroup.update(:enter => false)
+          message = ResponceMessage.new(DefaultMessage.new, event)
+        elsif event.message['text'].include?("情報")
           message = ResponceMessage.new(DefaultMessage.new, event)
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
         end
+        p event['source']["type"]
+        p event['source']["userId"]
+        p event['source']["groupId"]
         case event.type
         when Line::Bot::Event::MessageType::Text
           res = client.reply_message(event['replyToken'], message.output_message)
