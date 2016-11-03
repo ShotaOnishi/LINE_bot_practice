@@ -7,7 +7,7 @@ class OrderMessage
             "type": "buttons",
             #"thumbnailImageUrl": "https://pbs.twimg.com/media/B_QHDbSVEAA1adJ.jpg",
             #"title": "Menu",
-            "text": "Please select",
+            "text": "入店済",
             "actions": [
                 {
                     "type": "postback",

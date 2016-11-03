@@ -7,7 +7,7 @@ class ShowOrderMessage
             "type": "buttons",
             #"thumbnailImageUrl": "https://pbs.twimg.com/media/B_QHDbSVEAA1adJ.jpg",
             #"title": "Menu",
-            "text": "Please select",
+            "text": "入店前",
             "actions": [
                 {
                     "type": "postback",
