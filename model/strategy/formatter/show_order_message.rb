@@ -1,0 +1,36 @@
+class ShowOrderMessage
+  def output_message(context)
+    {
+        "type": "template",
+        "altText": "this is a buttons template",
+        "template": {
+            "type": "buttons",
+            #"thumbnailImageUrl": "https://pbs.twimg.com/media/B_QHDbSVEAA1adJ.jpg",
+            #"title": "Menu",
+            "text": "Please select",
+            "actions": [
+                {
+                    "type": "postback",
+                    "label": "丼",
+                    "data": "befDON"
+                },
+                {
+                    "type": "postback",
+                    "label": "麺類",
+                    "data": "befMEN"
+                },
+                {
+                    "type": "postback",
+                    "label": "デザート",
+                    "data": "befDES"
+                },
+                {
+                    "type": "url",
+                    "label": "公式ページ",
+                    "data": "https://www.jaist.ac.jp/index.html"
+                }
+            ]
+        }
+    }
+  end
+end

@@ -96,6 +96,7 @@ post '/callback' do
 
     events = client.parse_events_from(body)
 
+    enter_flug = 0
 
 
     events.each { |event|
@@ -107,6 +108,12 @@ post '/callback' do
           message = ResponceMessage.new(DonMessage.new("麺類"))
         elsif event["postback"]["data"] == "DES"
           message = ResponceMessage.new(DonMessage.new("デザート"))
+        elsif event["postback"]["data"] == "befDON"
+          message = ResponceMessage.new(ShowDonMessage.new("丼"))
+        elsif event["postback"]["data"] == "befDON"
+          message = ResponceMessage.new(ShowDonMessage.new("麺類"))
+        elsif event["postback"]["data"] == "befDON"
+          message = ResponceMessage.new(ShowDonMessage.new("デザート"))
         end
         client.reply_message(event['replyToken'], message.output_message)
       when Line::Bot::Event::Message
@@ -129,10 +136,16 @@ post '/callback' do
         elsif event.message['text'].include?("ミーティング")
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
-          message = ResponceMessage.new(OrderMessage.new)
+          case enter_flug
+          when 0
+            message = ResponceMessage.new(ShowOrderMessage.new)
+          when 1
+            message = ResponceMessage.new(OrderMessage.new)
+          end
         elsif event.message["text"].include?("翻訳")
           message = ResponceMessage.new(TranslateMessage.new, event)
         elsif event.message['text'].include?("入店")
+          enter_flug = 1
           event.message['text'] = "いらっしゃいませ！"
           mesage = message = ResponceMessage.new(DefaultMessage.new, event)
         else
