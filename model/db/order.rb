@@ -1,2 +1,2 @@
-def Order < ActiveRecord::Base
+class Order < ActiveRecord::Base
 end
