@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20161030133901) do
     t.integer  "value"
     t.string   "category"
     t.text     "picture"
+    t.text     "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

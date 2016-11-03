@@ -5,6 +5,7 @@ class CreateMenus2 < ActiveRecord::Migration[5.0]
       t.integer :value
       t.string :category
       t.text :picture
+      t.text :detail
       t.timestamps
     end
   end

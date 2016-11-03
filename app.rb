@@ -66,7 +66,8 @@ post '/new' do
   Menu.create(:name => params[:name],
     :value => params[:value],
     :picture => params[:picture],
-    :category => params[:category]
+    :category => params[:category],
+    :detall => params[:detail]
     )
   redirect '/'
 end
