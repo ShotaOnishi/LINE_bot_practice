@@ -134,7 +134,7 @@ post '/callback' do
         elsif event.message['text'].include?("ミーティング")
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
-          if request.cookies['foo'] == "in"
+          if request.cookies['foo']
             message = ResponceMessage.new(OrderMessage.new)
           else
             message = ResponceMessage.new(ShowOrderMessage.new)
