@@ -98,8 +98,8 @@ post '/callback' do
           message = ResponceMessage.new(ShowDonMessage.new("デザート"))
         end
         client.reply_message(event['replyToken'], message.output_message)
-        puts event['replyToken']
-        puts event['source']
+        # puts event['replyToken']
+        # puts event['source']
       when Line::Bot::Event::Message
         puts event.source
         if event.message['text'].include?("画像")
@@ -146,10 +146,11 @@ post '/callback' do
           mygroup.update(:enter => false)
           message = ResponceMessage.new(DefaultMessage.new, event)
         elsif event.message['text'].include?("情報")
-          event.message['text'] = event.source["userId"]
+          # event.message['text'] = event.source["userId"]
           message = ResponceMessage.new(DefaultMessage.new, event)
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
+          p event['source']
         end
         case event.type
         when Line::Bot::Event::MessageType::Text
