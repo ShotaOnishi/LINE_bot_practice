@@ -19,6 +19,7 @@ end
 configure :development do
   ActiveRecord::Base.configurations = YAML.load_file('database.yml')
   ActiveRecord::Base.establish_connection(:development)
+  enable :sessions
 end
 
 class Menu < ActiveRecord::Base
@@ -84,8 +85,6 @@ post '/delete/:id' do
   end
 end
 
-enter_flug = 0
-
 post '/callback' do
   body = request.body.read
 
@@ -135,16 +134,15 @@ post '/callback' do
         elsif event.message['text'].include?("ミーティング")
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
-          case enter_flug
-          when 0
-            message = ResponceMessage.new(ShowOrderMessage.new)
-          when 1
+          if request.cookies['foo'] == "in"
             message = ResponceMessage.new(OrderMessage.new)
+          else
+            message = ResponceMessage.new(ShowOrderMessage.new)
           end
         elsif event.message["text"].include?("翻訳")
           message = ResponceMessage.new(TranslateMessage.new, event)
         elsif event.message['text'].include?("入店")
-          enter_flug = 1
+          response.set_cookie "foo", "in"
           event.message['text'] = "いらっしゃいませ！"
           mesage = message = ResponceMessage.new(DefaultMessage.new, event)
         else
