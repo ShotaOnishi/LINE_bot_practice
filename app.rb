@@ -99,7 +99,7 @@ post '/callback' do
         end
         client.reply_message(event['replyToken'], message.output_message)
       when Line::Bot::Event::Message
-        puts event
+        puts event.source
         if event.message['text'].include?("画像")
           message = ResponceMessage.new(ImageMessage.new)
         elsif event.message['text'].include?("名言")
