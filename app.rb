@@ -5,6 +5,7 @@ require 'rest-client'
 require 'active_record'
 require 'pg'
 require 'require_all'
+require 'uri'
 # require 'date'
 require_all 'model'
 require_all 'module'
@@ -73,85 +74,107 @@ end
 
 post '/callback' do
   body = request.body.read
-
+  p body
   signature = request.env['HTTP_X_LINE_SIGNATURE']
   unless client.validate_signature(body, signature)
     error 400 do 'Bad Request' end
     end
 
     events = client.parse_events_from(body)
+    print events
 
     events.each { |event|
       case event
-      when Line::Bot::Event::Postback
-        if event["postback"]["data"] == "DON"
-          message = ResponceMessage.new(DonMessage.new("丼"))
-        elsif event["postback"]["data"] == "MEN"
-          message = ResponceMessage.new(DonMessage.new("麺類"))
-        elsif event["postback"]["data"] == "DES"
-          message = ResponceMessage.new(DonMessage.new("デザート"))
-        elsif event["postback"]["data"] == "befDON"
-          message = ResponceMessage.new(ShowDonMessage.new("丼"))
-        elsif event["postback"]["data"] == "befMEN"
-          message = ResponceMessage.new(ShowDonMessage.new("麺類"))
-        elsif event["postback"]["data"] == "befDES"
-          message = ResponceMessage.new(ShowDonMessage.new("デザート"))
-        end
-        client.reply_message(event['replyToken'], message.output_message)
-      when Line::Bot::Event::Message
-        if event.message['text'].include?("画像")
-          message = ResponceMessage.new(ImageMessage.new)
-        elsif event.message['text'].include?("名言")
-          message = ResponceMessage.new(RemarkMessage.new)
-        elsif event.message['text'].include?("住所")
-          message = ResponceMessage.new(LocationMessage.new)
-        elsif event.message['text'].include?("スタンプ")
-          message = ResponceMessage.new(StickerMessage.new)
-        elsif event.message['text'].include?("イメージリンク")
-          message = ResponceMessage.new(ImagemapMessage.new)
-        elsif event.message['text'].include?("ボタン")
-          message = ResponceMessage.new(ButtonMessage.new)
-        elsif event.message['text'].include?("リッチ")
-          message = ResponceMessage.new(RichMessage.new)
-        elsif event.message['text'].include?("確認")
-          message = ResponceMessage.new(ConfirmMessage.new)
-        elsif event.message['text'].include?("ミーティング")
-          message = ResponceMessage.new(MeetingMessage.new)
-        elsif event.message['text'].include?("注文")
-          mygroup = OrderGroup.where(:user_id => 1)
-          if mygroup.enter = true
-            message = ResponceMessage.new(OrderMessage.new)
+        when Line::Bot::Event::Postback
+          q_array = URI::decode_www_form(event["postback"]['data'])
+          q_hash = Hash[q_array]
+          p q_hash
+
+          if q_hash.has_key?('category')
+            category = q_hash['category']
+            message = ResponceMessage.new(ShowMenuMessage.new(Menu, category))
+
+            if category == 'befDON'
+              message = ResponceMessage.new(ShowDonMessage.new('丼'))
+            elsif category == 'befMEN'
+              message = ResponceMessage.new(ShowDonMessage.new('麺類'))
+            elsif category == 'befDES'
+              message = ResponceMessage.new(ShowDonMessage.new('デザート'))
+            end
+          elsif q_hash.has_key?('action')
+            action = q_hash['action']
+            if action == 'order'
+              message = ResponceMessage.new(OrderCompleteMessage.new())
+            end
           else
-            message = ResponceMessage.new(ShowOrderMessage.new)
+            exit 1
           end
-        elsif event.message["text"].include?("翻訳")
-          message = ResponceMessage.new(TranslateMessage.new, event)
-        elsif event.message['text'].include?("入店")
-          OrderGroup.create(:enter => true,
-                            :start_time => Time.now,
-                            :end_time => Time.now + 60*60*2,
-                            :table => 1,
-                            :user_id => 1
-                            )
-          message = ResponceMessage.new(DefaultMessage.new, event)
-        elsif event.message['text'].include?("退店")
-          mygroup = OrderGroup.where(:user_id => 1)
-          mygroup.update(:enter => false)
-          message = ResponceMessage.new(DefaultMessage.new, event)
-        else
-          message = ResponceMessage.new(DefaultMessage.new, event)
-        end
-        case event.type
-        when Line::Bot::Event::MessageType::Text
-          res = client.reply_message(event['replyToken'], message.output_message)
-          p res
-        when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
-          response = client.get_message_content(event.message['id'])
-          tf = Tempfile.open("content")
-          tf.write(response.body)
-        else
-          p "Noevent"
-        end
+
+          client.reply_message(event['replyToken'], message.output_message)
+        when Line::Bot::Event::Message
+          # puts event.source
+          if event.message['text'].include?("画像")
+            message = ResponceMessage.new(ImageMessage.new)
+          elsif event.message['text'].include?("名言")
+            message = ResponceMessage.new(RemarkMessage.new)
+          elsif event.message['text'].include?("住所")
+            message = ResponceMessage.new(LocationMessage.new)
+          elsif event.message['text'].include?("スタンプ")
+            message = ResponceMessage.new(StickerMessage.new)
+          elsif event.message['text'].include?("イメージリンク")
+            message = ResponceMessage.new(ImagemapMessage.new)
+          elsif event.message['text'].include?("ボタン")
+            message = ResponceMessage.new(ButtonMessage.new)
+          elsif event.message['text'].include?("リッチ")
+            message = ResponceMessage.new(RichMessage.new)
+          elsif event.message['text'].include?("確認")
+            message = ResponceMessage.new(ConfirmMessage.new)
+          elsif event.message['text'].include?("ミーティング")
+            message = ResponceMessage.new(MeetingMessage.new)
+          elsif event.message['text'].include?("注文")
+            if OrderGroup.exists?(:user_id => event['source']["userId"])
+              mygroup = OrderGroup.where(:user_id => event['source']["userId"]).last
+              if mygroup.enter == true
+                message = ResponceMessage.new(OrderMessage.new)
+              else
+                message = ResponceMessage.new(ShowOrderMessage.new)
+              end
+            else
+              message = ResponceMessage.new(ShowOrderMessage.new)
+            end
+          elsif event.message["text"].include?("翻訳")
+            message = ResponceMessage.new(TranslateMessage.new, event)
+          elsif event.message['text'].include?("入店")
+            OrderGroup.create(:enter => true,
+                              :start_time => Time.now,
+                              :end_time => Time.now + 60*60*2,
+                              :table => 1,
+                              :user_id => event['source']["userId"]
+            )
+            message = ResponceMessage.new(DefaultMessage.new, event)
+          elsif event.message['text'].include?("退店")
+            mygroup = OrderGroup.where(:user_id => event['source']["userId"])
+            mygroup.update(:enter => false)
+            message = ResponceMessage.new(DefaultMessage.new, event)
+          elsif event.message['text'].include?("情報")
+            message = ResponceMessage.new(DefaultMessage.new, event)
+          else
+            message = ResponceMessage.new(DefaultMessage.new, event)
+          end
+          p event['source']["type"]
+          p event['source']["userId"]
+          p event['source']["groupId"]
+          case event.type
+            when Line::Bot::Event::MessageType::Text
+              res = client.reply_message(event['replyToken'], message.output_message)
+              p res
+            when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
+              response = client.get_message_content(event.message['id'])
+              tf = Tempfile.open("content")
+              tf.write(response.body)
+            else
+              p "Noevent"
+          end
       end
     }
-  end
+end

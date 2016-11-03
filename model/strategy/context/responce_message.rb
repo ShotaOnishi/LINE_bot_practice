@@ -2,10 +2,10 @@ class ResponceMessage
   attr_reader :event
   attr_accessor :formatter
 
-  def initialize(formatter, event=nil)
+  def initialize(formatter, value=nil)
     @formatter = formatter
-    unless event.nil?
-      @event = event
+    unless value.nil?
+      @event = value
     end
   end
 
