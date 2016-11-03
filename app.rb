@@ -144,7 +144,7 @@ post '/callback' do
           message = ResponceMessage.new(TranslateMessage.new, event)
         elsif event.message['text'].include?("入店")
           cookies[:something] = 'in'
-          event.message['text'] = "いらっしゃいませ！"
+          event.message['text'] = cookies[:something]
           mesage = message = ResponceMessage.new(DefaultMessage.new, event)
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
