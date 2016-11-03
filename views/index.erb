@@ -1,7 +1,7 @@
 <%@menus.each do |menu|%>
   <p><%=menu.name%><span><a href="/delete/<%= menu[:id] %>" class="btn btn-danger">Delete</a></span></p>
   <ul>
-    <li><%=menu.value%></li>
+    <li><%=menu.price%></li>
     <li><%=menu.picture%></li>
     <li><%=menu.category%></li>
   </ul>
