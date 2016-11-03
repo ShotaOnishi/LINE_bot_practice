@@ -98,6 +98,8 @@ post '/callback' do
           message = ResponceMessage.new(ShowDonMessage.new("デザート"))
         end
         client.reply_message(event['replyToken'], message.output_message)
+        puts event['replyToken']
+        puts event['source']
       when Line::Bot::Event::Message
         puts event.source
         if event.message['text'].include?("画像")
