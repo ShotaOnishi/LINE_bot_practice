@@ -5,16 +5,17 @@ require 'rest-client'
 require 'active_record'
 require 'pg'
 require 'require_all'
-require "sinatra/cookies"
 # require 'date'
 require_all 'model'
+require_all 'module'
+include Line
 
-# DB設定ファイルの読み込み
+require 'dotenv'
+Dotenv.load
+
+# Load DB filesDB 
 configure :production do
   ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
-  # use Rack::Auth::Basic do |username, password|
-  #   username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD']
-  # end
   enable :sessions
 end
 
@@ -24,23 +25,10 @@ configure :development do
   enable :sessions
 end
 
+# Connect Postgres
+PGClient.instance
+
 class Menu < ActiveRecord::Base
-end
-
-module Line
-  module Bot
-    class HTTPClient
-      def http(uri)
-        proxy = URI(ENV["FIXIE_URL"])
-        http = Net::HTTP.new(uri.host, uri.port, proxy.host, proxy.port, proxy.user, proxy.password)
-        if uri.scheme == "https"
-          http.use_ssl = true
-        end
-
-        http
-      end
-    end
-  end
 end
 
 def client
@@ -97,8 +85,6 @@ post '/callback' do
     end
 
     events = client.parse_events_from(body)
-
-
 
     events.each { |event|
       case event
@@ -174,5 +160,3 @@ post '/callback' do
       end
     }
   end
-
-
