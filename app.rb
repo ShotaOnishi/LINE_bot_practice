@@ -130,7 +130,7 @@ post '/callback' do
           OrderGroup.create(:enter => true,
                             :start_time => Time.now,
                             :end_time => Time.now + 60*60*2,
-                            :table_num => 1,
+                            :table => 1,
                             :user_id => 1
                             )
           message = ResponceMessage.new(DefaultMessage.new, event)
