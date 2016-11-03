@@ -92,7 +92,7 @@ post '/callback' do
           message = ResponceMessage.new(DonMessage.new("デザート"))
         elsif event["postback"]["data"] == "befDON"
           message = ResponceMessage.new(ShowDonMessage.new("丼"))
-        elsif event["postback"]["data"] == "befMENN"
+        elsif event["postback"]["data"] == "befMEN"
           message = ResponceMessage.new(ShowDonMessage.new("麺類"))
         elsif event["postback"]["data"] == "befDES"
           message = ResponceMessage.new(ShowDonMessage.new("デザート"))
