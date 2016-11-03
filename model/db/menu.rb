@@ -1,2 +1,3 @@
-# class Menus < ActiveRecord::Base
-# end
+class Menu < ActiveRecord::Base
+    belongs_to :order
+end
