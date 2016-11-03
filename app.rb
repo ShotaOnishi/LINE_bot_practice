@@ -136,7 +136,7 @@ post '/callback' do
           message = ResponceMessage.new(DefaultMessage.new, event)
         elsif event.message['text'].include?("退店")
           mygroup = OrderGroup.where(:user_id => 1)
-          mygroup.update(:enter => false) if mygroup.enter == true
+          mygroup.update(:enter => false)
           message = ResponceMessage.new(DefaultMessage.new, event)
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
