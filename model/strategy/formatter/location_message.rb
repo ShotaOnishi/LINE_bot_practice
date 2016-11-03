@@ -1,6 +1,7 @@
 
 class LocationMessage
   def output_message(context)
+    response_message = "渋谷駅"
     {
         "type": "location",
         "title": response_message,

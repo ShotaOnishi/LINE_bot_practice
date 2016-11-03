@@ -130,6 +130,8 @@ post '/callback' do
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
           message = ResponceMessage.new(OrderMessage.new)
+        elsif event.message["text"].include?("翻訳")
+          message = ResponceMessage.new(TranslateMessage.new, event)
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
         end
