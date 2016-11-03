@@ -145,7 +145,7 @@ post '/callback' do
         elsif event.message['text'].include?("入店")
           response.set_cookie :something,"in"
           # cookies[:something] = 'in'
-          event.message['text'] = request.cookies[:something]
+          event.message['text'] = cookies[:something]
           mesage = message = ResponceMessage.new(DefaultMessage.new, event)
         elsif event.message['text'].include?("退店")
           response.set_cookie :something,"out"
