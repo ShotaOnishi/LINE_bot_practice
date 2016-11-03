@@ -149,7 +149,7 @@ post '/callback' do
           message = ResponceMessage.new(DefaultMessage.new, event)
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
-          p event['message']["id"]
+          p event['source']["type"]
         end
         case event.type
         when Line::Bot::Event::MessageType::Text
