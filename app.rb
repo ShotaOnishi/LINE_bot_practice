@@ -121,8 +121,8 @@ post '/callback' do
         elsif event.message['text'].include?("ミーティング")
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
-          if OrderGroup.exists?(:user_id => 1)
-            mygroup = OrderGroup.where(:user_id => 1).last
+          if OrderGroup.exists?(:user_id => event['source']["userId"])
+            mygroup = OrderGroup.where(:user_id => event['source']["userId"]).last
             if mygroup.enter == true
               message = ResponceMessage.new(OrderMessage.new)
             else
@@ -138,15 +138,14 @@ post '/callback' do
             :start_time => Time.now,
             :end_time => Time.now + 60*60*2,
             :table => 1,
-            :user_id => 1
+            :user_id => event['source']["userId"]
             )
           message = ResponceMessage.new(DefaultMessage.new, event)
         elsif event.message['text'].include?("退店")
-          mygroup = OrderGroup.where(:user_id => 1)
+          mygroup = OrderGroup.where(:user_id => event['source']["userId"])
           mygroup.update(:enter => false)
           message = ResponceMessage.new(DefaultMessage.new, event)
         elsif event.message['text'].include?("情報")
-          # event.message['text'] = event.source["userId"]
           message = ResponceMessage.new(DefaultMessage.new, event)
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
