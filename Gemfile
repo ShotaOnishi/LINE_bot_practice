@@ -22,3 +22,6 @@ gem "sinatra-activerecord", :require => 'sinatra/activerecord'
 #gem 'sqlite3'
 
 gem "google-cloud-translate"
+
+#cookie
+gem 'sinatra-contrib'
