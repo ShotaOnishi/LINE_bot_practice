@@ -143,7 +143,7 @@ post '/callback' do
           mygroup.update(:enter => false)
           message = ResponceMessage.new(DefaultMessage.new, event)
         elsif event.message['text'].include?("情報")
-          event.message['text'] = event.source.userId.to_s
+          event.message['text'] = event.source["userId"]
           message = ResponceMessage.new(DefaultMessage.new, event)
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
