@@ -136,14 +136,18 @@ post '/callback' do
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
           if cookies[:something] == "in"
-            message = ResponceMessage.new(ShowOrderMessage.new)
-          else
             message = ResponceMessage.new(OrderMessage.new)
+          else
+            message = ResponceMessage.new(ShowOrderMessage.new)
           end
         elsif event.message["text"].include?("翻訳")
           message = ResponceMessage.new(TranslateMessage.new, event)
         elsif event.message['text'].include?("入店")
           cookies[:something] = 'in'
+          event.message['text'] = cookies[:something]
+          mesage = message = ResponceMessage.new(DefaultMessage.new, event)
+        elsif event.message['text'].include?("退店")
+          cookies[:something] = 'out'
           event.message['text'] = cookies[:something]
           mesage = message = ResponceMessage.new(DefaultMessage.new, event)
         else
