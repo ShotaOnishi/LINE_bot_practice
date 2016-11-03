@@ -17,7 +17,7 @@ class ShowDonMessage
                 {
                     "thumbnailImageUrl": order[0].picture.to_s,
                     "title": order[0].name.to_s,
-                    "text": order[0].value.to_s,
+                    "text": order[0].price.to_s,
                     "actions": [
                         {
                             "type": "postback",
@@ -34,7 +34,7 @@ class ShowDonMessage
                 {
                     "thumbnailImageUrl": order[1].picture.to_s,
                     "title": order[1].name.to_s,
-                    "text": order[1].value.to_s,
+                    "text": order[1].price.to_s,
                     "actions": [
                         {
                             "type": "postback",
@@ -51,7 +51,7 @@ class ShowDonMessage
                 {
                     "thumbnailImageUrl": order[2].picture.to_s,
                     "title": order[2].name.to_s,
-                    "text": order[2].value.to_s,
+                    "text": order[2].price.to_s,
                     "actions": [
                         {
                             "type": "postback",

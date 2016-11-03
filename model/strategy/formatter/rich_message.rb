@@ -12,7 +12,7 @@ class RichMessage
                 {
                     "thumbnailImageUrl": menu1.picture.to_s,
                     "title": menu1.name.to_s,
-                    "text": "description",
+                    "text": menu1.price.to_s,
                     "actions": [
                         {
                             "type": "postback",
@@ -34,7 +34,7 @@ class RichMessage
                 {
                     "thumbnailImageUrl": menu2.picture.to_s,
                     "title": menu2.name.to_s,
-                    "text": "description",
+                    "text": menu2.price.to_s,
                     "actions": [
                         {
                             "type": "postback",
@@ -56,7 +56,7 @@ class RichMessage
                 {
                     "thumbnailImageUrl": menu3.picture.to_s,
                     "title": menu3.name.to_s,
-                    "text": "description",
+                    "text": menu3.price.to_s,
                     "actions": [
                         {
                             "type": "postback",
