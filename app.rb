@@ -84,7 +84,7 @@ post '/delete/:id' do
   end
 end
 
-
+enter_flug = 0
 
 post '/callback' do
   body = request.body.read
@@ -96,7 +96,6 @@ post '/callback' do
 
     events = client.parse_events_from(body)
 
-    enter_flug = 0
 
 
     events.each { |event|
