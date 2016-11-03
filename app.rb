@@ -134,7 +134,7 @@ post '/callback' do
         elsif event.message['text'].include?("ミーティング")
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
-          if request.cookies['foo']
+          if cookies[:something] == "in"
             message = ResponceMessage.new(OrderMessage.new)
           else
             message = ResponceMessage.new(ShowOrderMessage.new)
@@ -142,7 +142,7 @@ post '/callback' do
         elsif event.message["text"].include?("翻訳")
           message = ResponceMessage.new(TranslateMessage.new, event)
         elsif event.message['text'].include?("入店")
-          response.set_cookie "foo", "in"
+          cookies[:something] = 'in'
           event.message['text'] = "いらっしゃいませ！"
           mesage = message = ResponceMessage.new(DefaultMessage.new, event)
         else
