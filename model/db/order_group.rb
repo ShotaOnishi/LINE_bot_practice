@@ -1,2 +1,2 @@
-# class OrderGroups < ActiveRecord::Base
-# end
+class OrderGroup < ActiveRecord::Base
+end
