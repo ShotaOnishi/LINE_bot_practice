@@ -64,7 +64,7 @@ end
 
 post '/new' do
   Menu.create(:name => params[:name],
-    :value => params[:price],
+    :value => params[:value],
     :picture => params[:picture],
     :category => params[:category]
     )

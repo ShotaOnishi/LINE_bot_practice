@@ -17,7 +17,7 @@ class DonMessage
                 {
                     "thumbnailImageUrl": order[0].picture.to_s,
                     "title": order[0].name.to_s,
-                    "text": "description",
+                    "text": order[0].value.to_s,
                     "actions": [
                         {
                             "type": "postback",
@@ -39,7 +39,7 @@ class DonMessage
                 {
                     "thumbnailImageUrl": order[1].picture.to_s,
                     "title": order[1].name.to_s,
-                    "text": "description",
+                    "text": order[1].value.to_s,
                     "actions": [
                         {
                             "type": "postback",
@@ -61,7 +61,7 @@ class DonMessage
                 {
                     "thumbnailImageUrl": order[2].picture.to_s,
                     "title": order[2].name.to_s,
-                    "text": "description",
+                    "text": order[2].value.to_s,
                     "actions": [
                         {
                             "type": "postback",

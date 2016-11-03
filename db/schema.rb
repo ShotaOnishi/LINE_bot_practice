@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20161030133901) do
 
   create_table "menus", force: :cascade do |t|
     t.string   "name"
-    t.integer  "price"
+    t.integer  "value"
     t.string   "category"
     t.text     "picture"
     t.datetime "created_at", null: false
