@@ -119,7 +119,7 @@ post '/callback' do
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
           mygroup = OrderGroup.where(:user_id => 1).last
-          if mygroup.enter = true
+          if mygroup.enter == true
             message = ResponceMessage.new(OrderMessage.new)
           else
             message = ResponceMessage.new(ShowOrderMessage.new)
