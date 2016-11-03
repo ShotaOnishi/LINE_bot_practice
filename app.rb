@@ -118,7 +118,8 @@ post '/callback' do
         elsif event.message['text'].include?("ミーティング")
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
-          if request.cookies["foo"] == "in"
+          mygroup = OrderGroup.find(1)
+          if mygroup.enter = true
             message = ResponceMessage.new(OrderMessage.new)
           else
             message = ResponceMessage.new(ShowOrderMessage.new)
@@ -126,8 +127,17 @@ post '/callback' do
         elsif event.message["text"].include?("翻訳")
           message = ResponceMessage.new(TranslateMessage.new, event)
         elsif event.message['text'].include?("入店")
+          OrderGroup.create(:enter => true,
+                            :start_time => Time.now,
+                            :end_time => Time.now + 60*60*2,
+                            :table_num => 1,
+                            :user_id => 1
+                            )
           message = ResponceMessage.new(DefaultMessage.new, event)
         elsif event.message['text'].include?("退店")
+          user = User.where(:id => 'aaa')
+          mygroup = User.OrderGroup.last
+          mygroup.enter = false if mygroup.enter = true
           message = ResponceMessage.new(DefaultMessage.new, event)
         else
           message = ResponceMessage.new(DefaultMessage.new, event)

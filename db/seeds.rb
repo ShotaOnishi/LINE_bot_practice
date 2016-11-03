@@ -9,3 +9,5 @@ Menu.create(:name => 'ぜんざい', :picture => 'https://res.cloudinary.com/hmf
 Menu.create(:name => '牛丼', :picture => 'https://res.cloudinary.com/hmfnscv52/image/upload/v1477841959/cmqyhzdxrnsfkwl45qdh.png', :detail => 'あ', :category => '丼', :price => 550)
 
 Shop.create(:name => 'YU-YU')
+
+User.create(:line_id => 'aaa')
