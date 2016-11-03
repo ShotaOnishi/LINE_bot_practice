@@ -101,7 +101,7 @@ post '/callback' do
         # puts event['replyToken']
         # puts event['source']
       when Line::Bot::Event::Message
-        puts event.source
+        # puts event.source
         if event.message['text'].include?("画像")
           message = ResponceMessage.new(ImageMessage.new)
         elsif event.message['text'].include?("名言")
