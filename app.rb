@@ -132,13 +132,13 @@ post '/callback' do
           {:value=> 'in', :max_age => "2592000"}
           # cookies[:something] = 'in'
           event.message['text'] = cookies["foo"]
-          mesage = message = ResponceMessage.new(DefaultMessage.new, event)
+          mesage = ResponceMessage.new(DefaultMessage.new, event)
         elsif event.message['text'].include?("退店")
           response.set_cookie 'foo',
           {:value=> 'out', :max_age => "2592000"}
           # cookies[:something] = 'out'
           event.message['text'] = cookies["foo"]
-          mesage = message = ResponceMessage.new(DefaultMessage.new, event)
+          mesage = ResponceMessage.new(DefaultMessage.new, event)
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
         end
