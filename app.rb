@@ -151,6 +151,7 @@ post '/callback' do
           event.message['text'] = cookies[:something]
           mesage = message = ResponceMessage.new(DefaultMessage.new, event)
         else
+          event.message['text'] = cookies[:something]
           message = ResponceMessage.new(DefaultMessage.new, event)
         end
         case event.type
