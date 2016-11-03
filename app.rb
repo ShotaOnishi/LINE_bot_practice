@@ -5,6 +5,7 @@ require 'rest-client'
 require 'active_record'
 require 'pg'
 require 'require_all'
+require "sinatra/cookies"
 # require 'date'
 require_all 'model'
 
