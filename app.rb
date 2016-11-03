@@ -25,9 +25,6 @@ configure :development do
   enable :sessions
 end
 
-# Connect Postgres
-PGClient.instance
-
 class Menu < ActiveRecord::Base
 end
 
