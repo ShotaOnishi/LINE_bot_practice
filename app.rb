@@ -100,7 +100,6 @@ post '/callback' do
         client.reply_message(event['replyToken'], message.output_message)
         # puts event['replyToken']
         # puts event['source']
-        p event['source']["type"]
       when Line::Bot::Event::Message
         # puts event.source
         if event.message['text'].include?("画像")
@@ -151,6 +150,9 @@ post '/callback' do
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
         end
+        p event['source']["type"]
+        p event['source']["userId"]
+        p event['source']["groupId"]
         case event.type
         when Line::Bot::Event::MessageType::Text
           res = client.reply_message(event['replyToken'], message.output_message)
