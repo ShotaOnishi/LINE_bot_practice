@@ -1,2 +1,2 @@
-class Menus < ActiveRecord::Base
-end
+# class Menus < ActiveRecord::Base
+# end
