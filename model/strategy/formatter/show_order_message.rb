@@ -23,11 +23,6 @@ class ShowOrderMessage
                     "type": "postback",
                     "label": "デザート",
                     "data": "befDES"
-                },
-                {
-                    "type": "url",
-                    "label": "公式ページ",
-                    "data": "https://www.jaist.ac.jp/index.html"
                 }
             ]
         }
