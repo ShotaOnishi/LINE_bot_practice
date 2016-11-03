@@ -118,9 +118,13 @@ post '/callback' do
         elsif event.message['text'].include?("ミーティング")
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
-          mygroup = OrderGroup.where(:user_id => 1).last
-          if mygroup.enter == true
-            message = ResponceMessage.new(OrderMessage.new)
+          if OrderGroup.exist?(:user_id => 1)
+            mygroup = OrderGroup.where(:user_id => 1).last
+            if mygroup.enter == true
+              message = ResponceMessage.new(OrderMessage.new)
+            else
+              message = ResponceMessage.new(ShowOrderMessage.new)
+            end
           else
             message = ResponceMessage.new(ShowOrderMessage.new)
           end
@@ -128,11 +132,11 @@ post '/callback' do
           message = ResponceMessage.new(TranslateMessage.new, event)
         elsif event.message['text'].include?("入店")
           OrderGroup.create(:enter => true,
-                            :start_time => Time.now,
-                            :end_time => Time.now + 60*60*2,
-                            :table => 1,
-                            :user_id => 1
-                            )
+            :start_time => Time.now,
+            :end_time => Time.now + 60*60*2,
+            :table => 1,
+            :user_id => 1
+            )
           message = ResponceMessage.new(DefaultMessage.new, event)
         elsif event.message['text'].include?("退店")
           mygroup = OrderGroup.where(:user_id => 1)
