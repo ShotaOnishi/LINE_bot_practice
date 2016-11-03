@@ -7,3 +7,5 @@ Menu.create(:name => 'ラーメン', :picture => 'https://res.cloudinary.com/hmf
 Menu.create(:name => 'プリン', :picture => 'https://res.cloudinary.com/hmfnscv52/image/upload/v1477841904/lhnqowtdser0mzqjkbr6.png', :detail => 'あ', :category => 'デザート', :price => 300)
 Menu.create(:name => 'ぜんざい', :picture => 'https://res.cloudinary.com/hmfnscv52/image/upload/v1477841934/cmxryowthlbybpsvxtai.png', :detail => 'あ', :category => 'デザート', :price => 450)
 Menu.create(:name => '牛丼', :picture => 'https://res.cloudinary.com/hmfnscv52/image/upload/v1477841959/cmqyhzdxrnsfkwl45qdh.png', :detail => 'あ', :category => '丼', :price => 550)
+
+Shop.create(:name => 'YU-YU')
