@@ -10,19 +10,17 @@ require_all 'model'
 require_all 'module'
 include Line
 
-# require 'dotenv'
-# Dotenv.load
+require 'dotenv'
+Dotenv.load
 
-# Load DB filesDB 
+# Load DB filesDB
 configure :production do
   ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
-  enable :sessions
 end
 
 configure :development do
   ActiveRecord::Base.configurations = YAML.load_file('database.yml')
   ActiveRecord::Base.establish_connection(:development)
-  enable :sessions
 end
 
 class Menu < ActiveRecord::Base
@@ -128,16 +126,8 @@ post '/callback' do
         elsif event.message["text"].include?("翻訳")
           message = ResponceMessage.new(TranslateMessage.new, event)
         elsif event.message['text'].include?("入店")
-          response.set_cookie 'foo',
-          {:value=> 'in', :max_age => "2592000"}
-          # cookies[:something] = 'in'
-          event.message['text'] = cookies["foo"]
           mesage = ResponceMessage.new(DefaultMessage.new, event)
         elsif event.message['text'].include?("退店")
-          response.set_cookie 'foo',
-          {:value=> 'out', :max_age => "2592000"}
-          # cookies[:something] = 'out'
-          event.message['text'] = cookies["foo"]
           mesage = ResponceMessage.new(DefaultMessage.new, event)
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
