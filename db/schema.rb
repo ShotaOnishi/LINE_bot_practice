@@ -15,6 +15,15 @@ ActiveRecord::Schema.define(version: 20161103071021) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "lists", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "value"
+    t.string   "category"
+    t.text     "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "menus", force: :cascade do |t|
     t.string   "name"
     t.text     "picture"
@@ -38,14 +47,6 @@ ActiveRecord::Schema.define(version: 20161103071021) do
   create_table "orders", force: :cascade do |t|
     t.string   "user_id"
     t.string   "menu_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "sensors", force: :cascade do |t|
-    t.string   "dtype"
-    t.string   "data"
-    t.string   "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
