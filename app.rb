@@ -135,7 +135,7 @@ post '/callback' do
         elsif event.message['text'].include?("ミーティング")
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
-          if cookies[:something] == "in"
+          if request.cookies[:something] == "in"
             message = ResponceMessage.new(OrderMessage.new)
           else
             message = ResponceMessage.new(ShowOrderMessage.new)
@@ -150,7 +150,7 @@ post '/callback' do
         elsif event.message['text'].include?("退店")
           response.set_cookie :something,{:value => 'out'}
           # cookies[:something] = 'out'
-          event.message['text'] = cookies[:something]
+          event.message['text'] = request.cookies[:something]
           mesage = message = ResponceMessage.new(DefaultMessage.new, event)
         else
           event.message['text'] = cookies[:something]
