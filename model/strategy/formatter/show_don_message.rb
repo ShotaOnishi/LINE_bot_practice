@@ -1,4 +1,4 @@
-class DonMessage
+class ShowDonMessage
   def initialize(key)
         @key = key
   end
