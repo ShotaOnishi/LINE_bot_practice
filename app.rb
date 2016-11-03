@@ -126,9 +126,9 @@ post '/callback' do
         elsif event.message["text"].include?("翻訳")
           message = ResponceMessage.new(TranslateMessage.new, event)
         elsif event.message['text'].include?("入店")
-          mesage = ResponceMessage.new(DefaultMessage.new, event)
+          message = ResponceMessage.new(DefaultMessage.new, event)
         elsif event.message['text'].include?("退店")
-          mesage = ResponceMessage.new(DefaultMessage.new, event)
+          message = ResponceMessage.new(DefaultMessage.new, event)
         else
           message = ResponceMessage.new(DefaultMessage.new, event)
         end
