@@ -10,8 +10,8 @@ require_all 'model'
 require_all 'module'
 include Line
 
-require 'dotenv'
-Dotenv.load
+# require 'dotenv'
+# Dotenv.load
 
 # Load DB filesDB
 configure :production do
