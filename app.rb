@@ -109,9 +109,9 @@ post '/callback' do
           message = ResponceMessage.new(DonMessage.new("デザート"))
         elsif event["postback"]["data"] == "befDON"
           message = ResponceMessage.new(ShowDonMessage.new("丼"))
-        elsif event["postback"]["data"] == "befDON"
+        elsif event["postback"]["data"] == "befMENN"
           message = ResponceMessage.new(ShowDonMessage.new("麺類"))
-        elsif event["postback"]["data"] == "befDON"
+        elsif event["postback"]["data"] == "befDES"
           message = ResponceMessage.new(ShowDonMessage.new("デザート"))
         end
         client.reply_message(event['replyToken'], message.output_message)
@@ -136,7 +136,7 @@ post '/callback' do
           message = ResponceMessage.new(MeetingMessage.new)
         elsif event.message['text'].include?("注文")
           if cookies[:something] == "in"
-            message = ResponceMessage.new(OrderMessage.new)
+            message = ResponceMessage.new(ShowOrderMessage.new)
           else
             message = ResponceMessage.new(OrderMessage.new)
           end
