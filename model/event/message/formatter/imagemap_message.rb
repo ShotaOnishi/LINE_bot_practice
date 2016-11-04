@@ -21,7 +21,7 @@ class ImagemapMessage
                 }
             },
             {
-                "type": "message",
+                "type": "event",
                 "text": "hello",
                 "area": {
                     "x": 520,
