@@ -83,7 +83,6 @@ post '/callback' do
     events = client.parse_events_from(body)
     #params = JSON.parse(request.body.read)
     #print events
-    p request.body.read + "aaaaaaaaaaaaaaaaaaaaaaaaaa"
 
   events.each { |event|
     case event
