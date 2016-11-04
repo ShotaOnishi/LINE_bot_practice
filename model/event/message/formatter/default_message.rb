@@ -3,7 +3,7 @@ class DefaultMessage
   def output_message(context)
     {
         type: "text",
-        text: context.event.message['text']
+        text: context.events.message['text']
     }
   end
 end
