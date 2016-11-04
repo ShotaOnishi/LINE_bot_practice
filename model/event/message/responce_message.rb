@@ -4,6 +4,9 @@ class ResponceMessage
     event = context.value
     text = event.message['text']
     p context
+    p context
+    p context
+    p context
 
     if text.include?("画像")
       message = MessageContext.new(ImageMessage.new)
