@@ -88,28 +88,7 @@ post '/callback' do
         when Line::Bot::Event::Postback
           q_array = URI::decode_www_form(event["postback"]['data'])
           q_hash = Hash[q_array]
-          p q_hash
-
-          if q_hash.has_key?('category')
-            category = q_hash['category']
-            message = ResponceMessage.new(ShowMenuMessage.new(Menu, category))
-
-            if category == 'befDON'
-              message = ResponceMessage.new(ShowDonMessage.new('丼'))
-            elsif category == 'befMEN'
-              message = ResponceMessage.new(ShowDonMessage.new('麺類'))
-            elsif category == 'befDES'
-              message = ResponceMessage.new(ShowDonMessage.new('デザート'))
-            end
-          elsif q_hash.has_key?('action')
-            action = q_hash['action']
-            if action == 'order'
-              message = ResponceMessage.new(OrderCompleteMessage.new())
-            end
-          else
-            exit 1
-          end
-
+          message = ResponceMessage.new(PostbackMessage.new, q_hash)
           client.reply_message(event['replyToken'], message.output_message)
         when Line::Bot::Event::Message
           # puts event.source
