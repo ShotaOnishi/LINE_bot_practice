@@ -78,11 +78,11 @@ post '/callback' do
   signature = request.env['HTTP_X_LINE_SIGNATURE']
   unless client.validate_signature(body, signature)
     error 400 do 'Bad Request' end
-    end
+  end
 
-    events = client.parse_events_from(body)
-    #params = JSON.parse(request.body.read)
-    #print events
+  events = client.parse_events_from(body)
+  print events
+  events = client.parse_events_from(body)
 
   events.each { |event|
     case event
@@ -91,11 +91,10 @@ post '/callback' do
         q_hash = Hash[q_array]
         message = MessageContext.new(PostbackMessage.new, q_hash)
         client.reply_message(event['replyToken'], message.output_message)
-        # puts event['replyToken']
-        # puts event['source']
       when Line::Bot::Event::Message
         # puts event.source
         message = MessageContext.new(ResponceMessage.new, event)
+
         case event.type
           when Line::Bot::Event::MessageType::Text
             res = client.reply_message(event['replyToken'], message.output_message)
@@ -108,5 +107,5 @@ post '/callback' do
             p "Noevent"
         end
     end
-    }
+  }
 end
