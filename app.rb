@@ -82,7 +82,12 @@ post '/callback' do
 
   events = client.parse_events_from(body)
   print events
-  events = client.parse_events_from(body)
+
+  callback_observer = CallbackSubject.instance
+  callback_observer.add_observer(WelcomeMessage.new)
+  events.each { |event|
+    callback_observer.event = event
+  }
 
   events.each { |event|
     case event
