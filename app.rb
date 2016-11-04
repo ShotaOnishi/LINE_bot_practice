@@ -85,9 +85,11 @@ post '/callback' do
 
   callback_observer = CallbackSubject.instance
   callback_observer.add_observer(WelcomeMessage.new)
+  callback_observer.add_observer(FirstTimeMessage.new)
   events.each { |event|
     callback_observer.event = event
   }
+  exit 1
 
   events.each { |event|
     case event
