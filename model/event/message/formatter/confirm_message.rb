@@ -9,12 +9,12 @@ class ConfirmMessage
             "text": "Are you sure?",
             "actions": [
                 {
-                    "type": "message",
+                    "type": "event",
                     "label": "Yes",
                     "text": "yes"
                 },
                 {
-                    "type": "message",
+                    "type": "event",
                     "label": "No",
                     "text": "no"
                 }

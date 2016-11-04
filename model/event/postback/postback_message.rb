@@ -8,18 +8,18 @@ class PostbackMessage
     hash = @context.value
     if hash.has_key?('category')
       category = q_hash['category']
-      message = ResponceMessage.new(ShowMenuMessage.new(Menu, category))
+      message = MessageContext.new(ShowMenuMessage.new(Menu, category))
       if category == 'befDON'
-        message = ResponceMessage.new(ShowDonMessage.new('丼'))
+        message = MessageContext.new(ShowDonMessage.new('丼'))
       elsif category == 'befMEN'
-        message = ResponceMessage.new(ShowDonMessage.new('麺類'))
+        message = MessageContext.new(ShowDonMessage.new('麺類'))
       elsif category == 'befDES'
-        message = ResponceMessage.new(ShowDonMessage.new('デザート'))
+        message = MessageContext.new(ShowDonMessage.new('デザート'))
       end
     elsif hash.has_key?('action')
       action = q_hash['action']
       if action == 'order'
-        message = ResponceMessage.new(OrderCompleteMessage.new())
+        message = MessageContext.new(OrderCompleteMessage.new())
       end
     else
       exit 1

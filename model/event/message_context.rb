@@ -1,4 +1,4 @@
-class ResponceMessage
+class MessageContext
   attr_reader :event
   attr_accessor :formatter
 
