@@ -47,8 +47,8 @@ class ResponceMessage
       mygroup = OrderGroup.where(:user_id => event['source']["userId"])
       mygroup.update(:enter => false)
       message = MessageContext.new(DefaultMessage.new, event)
-    elsif text.include?("情報")
-      message = MessageContext.new(DefaultMessage.new, event)
+    elsif text.include?("固有")
+      message = MessageContext.new(GooMessage.new, event)
     else
       message = MessageContext.new(DefaultMessage.new, event)
     end
