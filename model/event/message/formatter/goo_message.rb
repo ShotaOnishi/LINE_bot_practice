@@ -10,7 +10,7 @@ class GooMessage
     https = Net::HTTP.new('labs.goo.ne.jp', 443)
     https.use_ssl=true
     responce = https.post('/api/entity', request_data, header)
-    puts responce.body["ne-list"]
+    puts responce.body["ne_list"]
     {
       type: "text",
       text: context.value['message']['text']
