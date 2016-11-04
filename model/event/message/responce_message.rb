@@ -3,6 +3,7 @@ class ResponceMessage
   def output_message(context)
     event = context.value
     text = event.message['text']
+    p context
 
     if text.include?("画像")
       message = MessageContext.new(ImageMessage.new)
