@@ -32,7 +32,7 @@ class ShowMenuMessage
           {
               "thumbnailImageUrl": m.picture,
               "title": m.name,
-              "text": m.price,
+              "text": m.price + "円",
               "actions": [
                   {
                       "type": "postback",
