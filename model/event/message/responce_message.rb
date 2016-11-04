@@ -1,11 +1,8 @@
 
 class ResponceMessage
-  def initial(context)
-    @context = context
-  end
-
-  def output_message()
-    text = @context.value
+  def output_message(context)
+    event = context.value
+    text = event.message['text']
 
     if text.include?("画像")
       message = MessageContext.new(ImageMessage.new)

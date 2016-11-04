@@ -1,13 +1,10 @@
 
 class PostbackMessage
-  def initial(context)
-    @context = context
-  end
+  def output_message(context)
+    hash = context.value
 
-  def output_message()
-    hash = @context.value
     if hash.has_key?('category')
-      category = q_hash['category']
+      category = hash['category']
       message = MessageContext.new(ShowMenuMessage.new(Menu, category))
       if category == 'befDON'
         message = MessageContext.new(ShowDonMessage.new('丼'))
@@ -17,7 +14,7 @@ class PostbackMessage
         message = MessageContext.new(ShowDonMessage.new('デザート'))
       end
     elsif hash.has_key?('action')
-      action = q_hash['action']
+      action = hash['action']
       if action == 'order'
         message = MessageContext.new(OrderCompleteMessage.new())
       end

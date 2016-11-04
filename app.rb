@@ -92,8 +92,9 @@ post '/callback' do
         client.reply_message(event['replyToken'], message.output_message)
       when Line::Bot::Event::Message
         # puts event.source
-        text = event.message['text']
-        message = MessageContext.new(ReplyMessage.new, text)
+        p "AAA"
+        p event
+        message = MessageContext.new(ResponceMessage.new, event)
 
         case event.type
           when Line::Bot::Event::MessageType::Text

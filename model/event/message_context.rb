@@ -1,11 +1,11 @@
 class MessageContext
-  attr_reader :event
+  attr_reader :value
   attr_accessor :formatter
 
   def initialize(formatter, value=nil)
     @formatter = formatter
     unless value.nil?
-      @event = value
+      @value = value
     end
   end
 
