@@ -81,9 +81,10 @@ post '/callback' do
     end
 
     events = client.parse_events_from(body)
-    params = JSON.parse(request.body.read)
+    #params = JSON.parse(request.body.read)
     #print events
-    p params + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    p request.body.read + "aaaaaaaaaaaaaaaaaaaaaaaaaa"
+
   events.each { |event|
     case event
       when Line::Bot::Event::Postback
