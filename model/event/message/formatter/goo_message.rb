@@ -12,7 +12,13 @@ class GooMessage
     responce = https.post('/api/entity', request_data, header)
     result = JSON.parse(responce.body)
     result['ne_list'].each do |val, cate|
-      context.value['message']['text'] = val if cate == 'LOC'
+      context.value['message']['text'] = context.value['message']['text'] + "\n地名:#{val}" if cate == 'LOC'
+      context.value['message']['text'] = context.value['message']['text'] + "\n日付:#{val}" if cate == 'DAT'
+      context.value['message']['text'] = context.value['message']['text'] + "\n人工物:#{val}" if cate == 'ART'
+      context.value['message']['text'] = context.value['message']['text'] + "\n組織:#{val}" if cate == 'PSN'
+      context.value['message']['text'] = context.value['message']['text'] + "\n時刻:#{val}" if cate == 'TIM'
+
+
     end
 
     {
