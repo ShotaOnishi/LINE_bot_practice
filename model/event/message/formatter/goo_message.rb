@@ -9,7 +9,7 @@ class GooMessage
     header = {'Content-type'=>'application/json'}
     https = Net::HTTP.new('labs.goo.ne.jp', 443)
     https.use_ssl=true
-    responce = https.post('/api/morph', request_data, header)
+    responce = https.post('/api/entity', request_data, header)
     puts responce.body
     {
       type: "text",
