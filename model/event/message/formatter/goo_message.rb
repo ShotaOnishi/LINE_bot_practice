@@ -1,5 +1,5 @@
 
-class DefaultMessage
+class GooMessage
   def output_message(context)
     # encoding: utf-8
     require 'net/https'
